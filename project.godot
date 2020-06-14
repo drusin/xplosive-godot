@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Xplosive-godot"
-run/main_scene="res://Level.tscn"
+run/main_scene="res://src/Level.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -46,7 +46,16 @@ window/stretch/mode="2d"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "aseprite_importer" )
+enabled=PoolStringArray( "aseprite_importer", "open-external-editor" )
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="BombBlue"
+2d_physics/layer_4="BombGreen"
+2d_physics/layer_5="BombPurple"
+2d_physics/layer_6="BombRed"
 
 [rendering]
 
