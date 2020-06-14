@@ -857,3 +857,11 @@ region_rect = Rect2( 480, 0, 8, 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 38 )
+
+[node name="BombDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BombDetector"]
+visible = false
+shape = SubResource( 38 )

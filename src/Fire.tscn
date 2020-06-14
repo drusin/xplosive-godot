@@ -1,33 +1,31 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/textures.png" type="Texture" id=1]
+[ext_resource path="res://src/Fire.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "left"
-
-[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "horizontal"
 
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "left"
+
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "down"
+animation = "vertical"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "vertical"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "right"
+animation = "horizontal"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "horizontal"
+animation = "down"
 
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "up"
 
 [sub_resource type="AnimationNodeAnimation" id=17]
-animation = "vertical"
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "center"
+animation = "right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=1]
 blend_point_0/node = SubResource( 10 )
@@ -35,19 +33,17 @@ blend_point_0/pos = Vector2( -2, 0 )
 blend_point_1/node = SubResource( 11 )
 blend_point_1/pos = Vector2( -1, 0 )
 blend_point_2/node = SubResource( 12 )
-blend_point_2/pos = Vector2( 0, -1.9 )
+blend_point_2/pos = Vector2( 0, -2 )
 blend_point_3/node = SubResource( 13 )
-blend_point_3/pos = Vector2( 0, -1 )
+blend_point_3/pos = Vector2( 0, 2 )
 blend_point_4/node = SubResource( 14 )
-blend_point_4/pos = Vector2( 2, 0.1 )
+blend_point_4/pos = Vector2( 2, 0 )
 blend_point_5/node = SubResource( 15 )
-blend_point_5/pos = Vector2( 1, 0 )
+blend_point_5/pos = Vector2( 0, 0.9 )
 blend_point_6/node = SubResource( 16 )
-blend_point_6/pos = Vector2( 0, 2 )
+blend_point_6/pos = Vector2( 0, -1 )
 blend_point_7/node = SubResource( 17 )
-blend_point_7/pos = Vector2( 0, 1 )
-blend_point_8/node = SubResource( 18 )
-blend_point_8/pos = Vector2( 0, 0 )
+blend_point_7/pos = Vector2( 0.9, 0 )
 min_space = Vector2( -2, -2 )
 max_space = Vector2( 2, 2 )
 blend_mode = 1
@@ -246,11 +242,13 @@ extents = Vector2( 3, 3 )
 
 [node name="Fire" type="Area2D"]
 position = Vector2( 32, 32 )
+collision_layer = 128
+collision_mask = 67
+script = ExtResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 1 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/blend_position = Vector2( 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -268,5 +266,9 @@ region_enabled = true
 region_rect = Rect2( 704, 0, 8, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 9 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="body_entered" from="." to="." method="_on_Fire_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

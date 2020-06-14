@@ -47,8 +47,8 @@ animations = [ {
 radius = 2.0
 
 [node name="Bomb" type="StaticBody2D"]
-position = Vector2( 31, 30 )
-collision_layer = 0
+position = Vector2( 32, 32 )
+collision_layer = 124
 collision_mask = 0
 script = ExtResource( 2 )
 
@@ -59,12 +59,12 @@ frames = SubResource( 9 )
 visible = false
 shape = SubResource( 10 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="PlayerDetector" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
-collision_mask = 2
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource( 10 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_Area2D_body_exited"]

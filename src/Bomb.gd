@@ -1,27 +1,25 @@
 extends StaticBody2D
 
 const BITS_TO_CHECK = [2, 3, 4, 5]
+const FireController = preload("res://src/FireController.tscn")
 
-export var force = 2
+export var power = 2
 
 var overlap_set = false
 
-onready var overlap_detector = $Area2D
+onready var player_detector = $PlayerDetector
 onready var sprite = $AnimatedSprite
 
 
-# func _ready():
-# 	sprite.playing = true
+func _ready():
+	sprite.playing = true
 
 
 func _physics_process(_delta):
-	if overlap_set or overlap_detector.get_overlapping_bodies().size() == 0:
+	if overlap_set or player_detector.get_overlapping_bodies().size() == 0:
 		return;
 
-	for bit in BITS_TO_CHECK:
-		set_collision_layer_bit(bit, true)
-
-	for body in overlap_detector.get_overlapping_bodies():
+	for body in player_detector.get_overlapping_bodies():
 		for bit in BITS_TO_CHECK:
 			if body.get_collision_mask_bit(bit):
 				set_collision_layer_bit(bit, false)
@@ -36,4 +34,12 @@ func _on_Area2D_body_exited(body):
 
 
 func _on_AnimatedSprite_animation_finished():
+	var fire_controller = FireController.instance()
+	fire_controller.global_position = global_position
+	fire_controller.power = power
+	get_parent().add_child(fire_controller)
 	queue_free()
+	
+	
+func _on_explosion(_position, _timeout):
+	_on_AnimatedSprite_animation_finished()

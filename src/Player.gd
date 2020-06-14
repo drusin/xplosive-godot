@@ -20,6 +20,7 @@ onready var player_color_str = PlayerColor.keys()[player_color]
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var bomb_container = get_node("/root/Level/Bombs")
+onready var bomb_detector = $BombDetector
 
 func _ready():
 	set_collision_mask_bit(LAYERS[player_color], true)
@@ -31,13 +32,13 @@ func _ready():
 
 
 func _physics_process(delta):
-	if Engine.editor_hint: return
-	if Input.is_action_just_pressed("ui_accept") or dead:
-		# animation_state.travel("Dead")
-		# dead = true
+	if Engine.editor_hint or dead: return
+	if Input.is_action_just_pressed("ui_accept") and bomb_detector.get_overlapping_bodies().size() == 0:
 		var bomb = Bomb.instance();
 		bomb_container.add_child(bomb)
 		bomb.global_position = global_position
+		bomb.global_position.x = round((bomb.global_position.x + 4) / 8) * 8 - 4
+		bomb.global_position.y = round((bomb.global_position.y + 4) / 8) * 8 - 4
 		return
 
 	var input_vector = Vector2()
@@ -57,3 +58,8 @@ func _physics_process(delta):
 
 func _death_anim_finished():
 	queue_free()
+	
+	
+func _on_explosion(_position, _timeout):
+	animation_state.travel("Dead")
+	dead = true
