@@ -11,7 +11,8 @@ const LAYERS = {
 	PlayerColor.Red: 5
 }
 
-export (PlayerColor) var player_color
+export var player_color = PlayerColor.Blue
+export var SPEED = 20
 
 var velocity = Vector2.ZERO
 var dead = false
@@ -31,7 +32,7 @@ func _ready():
 		animation_tree.active = true
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Engine.editor_hint or dead: return
 	if Input.is_action_just_pressed("ui_accept") and bomb_detector.get_overlapping_bodies().size() == 0:
 		var bomb = Bomb.instance();
@@ -52,7 +53,7 @@ func _physics_process(delta):
 	else:
 		animation_state.travel('Idle')
 
-	velocity = velocity.move_toward(input_vector * 10, 10)
+	velocity = input_vector * SPEED
 	velocity = move_and_slide(velocity)
 
 

@@ -17,8 +17,8 @@ func _ready():
 	one_direction("y", -1)
 			
 	queue_free()
-	
-	
+
+
 func one_direction(x_or_y, negative_or_positive):
 	for i in range(0, power):
 		var position = global_position
