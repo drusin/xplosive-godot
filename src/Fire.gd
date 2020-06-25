@@ -18,5 +18,5 @@ func _on_Timer_timeout():
 
 
 func _on_Fire_body_entered(body):
-	if body.has_method("_on_explosion"):
-		 body._on_explosion(global_position, burn_time)
+	if body.has_method("explode"):
+		 body.explode(global_position, burn_time)

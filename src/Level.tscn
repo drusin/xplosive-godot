@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/brick-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/TileMap.gd" type="Script" id=3]
+[ext_resource path="res://src/BombController.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
@@ -80,7 +81,8 @@ points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
 [node name="Level" type="Node2D"]
 
-[node name="Bombs" type="Node2D" parent="."]
+[node name="BombController" parent="." instance=ExtResource( 4 )]
+players_path = NodePath("../Players")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 4 )

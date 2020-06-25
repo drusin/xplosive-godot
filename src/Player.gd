@@ -1,8 +1,6 @@
 tool
 extends KinematicBody2D
 
-const Bomb = preload("res://src/Bomb.tscn")
-
 enum PlayerColor { Blue, Green, Purple, Red }
 const LAYERS = {
 	PlayerColor.Blue: 2,
@@ -11,8 +9,12 @@ const LAYERS = {
 	PlayerColor.Red: 5
 }
 
-export var player_color = PlayerColor.Blue
+const Bomb = preload("res://src/Bomb.tscn")
+
+export (PlayerColor)var player_color = PlayerColor.Blue
 export var SPEED = 20
+export var max_bombs = 2
+export var power = 2
 
 var velocity = Vector2.ZERO
 var dead = false
@@ -20,8 +22,9 @@ var dead = false
 onready var player_color_str = PlayerColor.keys()[player_color]
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
-onready var bomb_container = get_node("/root/Level/Bombs")
 onready var bomb_detector = $BombDetector
+onready var controller = $Controller
+onready var current_bombs = max_bombs
 
 func _ready():
 	set_collision_mask_bit(LAYERS[player_color], true)
@@ -34,33 +37,25 @@ func _ready():
 
 func _physics_process(_delta):
 	if Engine.editor_hint or dead: return
-	if Input.is_action_just_pressed("ui_accept") and bomb_detector.get_overlapping_bodies().size() == 0:
-		var bomb = Bomb.instance();
-		bomb_container.add_child(bomb)
-		bomb.global_position = global_position
-		bomb.global_position.x = round((bomb.global_position.x + 4) / 8) * 8 - 4
-		bomb.global_position.y = round((bomb.global_position.y + 4) / 8) * 8 - 4
-		return
-
-	var input_vector = Vector2()
-	input_vector.x = Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
-	input_vector.y = Input.get_action_strength('ui_down') - Input.get_action_strength('ui_up')
-	input_vector = input_vector.normalized()
-
-	if input_vector != Vector2.ZERO:
-		animation_tree.set('parameters/Run/blend_position', input_vector)
+	
+	if controller.movement != Vector2.ZERO:
+		animation_tree.set('parameters/Run/blend_position', controller.movement)
 		animation_state.travel('Run')
 	else:
 		animation_state.travel('Idle')
-
-	velocity = input_vector * SPEED
+	
+	velocity = controller.movement * SPEED
 	velocity = move_and_slide(velocity)
+
+
+func is_on_bomb():
+	return bomb_detector.get_overlapping_bodies().size() != 0
 
 
 func _death_anim_finished():
 	queue_free()
 	
 	
-func _on_explosion(_position, _timeout):
+func explode(_position, _timeout):
 	animation_state.travel("Dead")
 	dead = true

@@ -7,7 +7,7 @@ enum {
 }
 
 
-func _on_explosion(position, timeout):
+func explode(position, timeout):
 	var world_position = world_to_map(position)
 	if get_cellv(world_position) == DESTROYABLE:
 		set_cellv(world_position, BREAKING)
