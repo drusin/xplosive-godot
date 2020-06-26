@@ -15,7 +15,7 @@ func _process(_delta):
 		
 		if multiplayer.has_network_peer():
 			rpc_unreliable("set_movement", movement)
-
+	
 		if Input.is_action_just_pressed("ui_accept"):
 			emit_signal("bomb_pressed", player)
 			if multiplayer.has_network_peer():

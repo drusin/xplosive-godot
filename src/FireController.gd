@@ -10,12 +10,12 @@ onready var raycast = $RayCast2D
 
 func _ready():
 	create_fire(global_position, Vector2(power, power), global_position)
-
+	
 	one_direction("x", 1)
 	one_direction("x", -1)
 	one_direction("y", 1)
 	one_direction("y", -1)
-			
+	
 	queue_free()
 
 

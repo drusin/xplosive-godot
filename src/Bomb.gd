@@ -7,7 +7,6 @@ const FireController = preload("res://src/FireController.tscn")
 
 export var power = 2
 
-var overlap_set = false
 var player
 
 onready var player_detector = $PlayerDetector
@@ -19,7 +18,7 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if overlap_set or player_detector.get_overlapping_bodies().size() == 0:
+	if player_detector.get_overlapping_bodies().size() == 0:
 		return;
 	
 	for bit in BITS_TO_CHECK:
@@ -30,7 +29,7 @@ func _physics_process(_delta):
 			if body.get_collision_mask_bit(bit):
 				set_collision_layer_bit(bit, false)
 	
-	overlap_set = true
+	set_physics_process(false)
 
 
 func _on_Area2D_body_exited(body):
