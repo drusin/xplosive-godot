@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/logo.png" type="Texture" id=3]
 [ext_resource path="res://src/menu/MainMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/menu/LocalMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/menu/TransitionController.gd" type="Script" id=6]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -23,3 +25,15 @@ __meta__ = {
 }
 
 [node name="MainMenu" parent="." instance=ExtResource( 4 )]
+
+[node name="LocalMenu" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="TransitionController" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="TweenLeft" type="Tween" parent="TransitionController"]
+
+[node name="TweenRight" type="Tween" parent="TransitionController"]
+[connection signal="transition" from="MainMenu" to="." method="_on_transition"]
+[connection signal="transition" from="LocalMenu" to="." method="_on_transition"]

@@ -1,8 +1,14 @@
 extends Control
 
-onready var local_button = $MainMenu/CenterContainer/GridContainer/Local
-onready var online_button = $MainMenu/CenterContainer/GridContainer/Online
-onready var settings_button = $MainMenu/CenterContainer/GridContainer/Settings
+onready var transition_controller = $TransitionController
+
+onready var main_menu = $MainMenu
+onready var local_menu = $LocalMenu
+
 
 func _ready():
-	local_button.grab_focus()
+	main_menu.focus_default()
+
+
+func _on_transition(to):
+	transition_controller.transiton(self[to])

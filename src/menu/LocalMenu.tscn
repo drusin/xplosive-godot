@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/menu/LocalMenu.gd" type="Script" id=2]
 
-[node name="MainMenu" type="MarginContainer"]
+[node name="LocalMenu" type="MarginContainer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +11,7 @@ margin_top = -34.0
 theme = ExtResource( 1 )
 custom_constants/margin_top = 2
 custom_constants/margin_bottom = 1
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -20,27 +22,56 @@ margin_right = 64.0
 margin_bottom = 33.0
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-margin_left = 12.0
-margin_right = 52.0
+margin_left = 5.0
+margin_right = 59.0
+margin_bottom = 31.0
+columns = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/GridContainer"]
+margin_right = 7.0
+margin_bottom = 31.0
+custom_constants/margin_bottom = 22
+
+[node name="Minus" type="Button" parent="CenterContainer/GridContainer/MarginContainer2"]
+margin_right = 7.0
+margin_bottom = 9.0
+text = "-"
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/GridContainer"]
+margin_left = 7.0
+margin_right = 47.0
 margin_bottom = 31.0
 custom_constants/vseparation = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Local" type="Button" parent="CenterContainer/GridContainer"]
+[node name="Start" type="Button" parent="CenterContainer/GridContainer/GridContainer"]
 margin_right = 40.0
 margin_bottom = 9.0
 text = "2 Players"
 
-[node name="Tutorial" type="Button" parent="CenterContainer/GridContainer"]
+[node name="Tutorial" type="Button" parent="CenterContainer/GridContainer/GridContainer"]
 margin_top = 11.0
 margin_right = 40.0
 margin_bottom = 20.0
 text = "Tutorial"
 
-[node name="Back" type="Button" parent="CenterContainer/GridContainer"]
+[node name="Back" type="Button" parent="CenterContainer/GridContainer/GridContainer"]
 margin_top = 22.0
 margin_right = 40.0
 margin_bottom = 31.0
 text = "Back"
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/GridContainer"]
+margin_left = 47.0
+margin_right = 54.0
+margin_bottom = 31.0
+custom_constants/margin_bottom = 22
+
+[node name="Plus" type="Button" parent="CenterContainer/GridContainer/MarginContainer"]
+margin_right = 7.0
+margin_bottom = 9.0
+text = "+"
+[connection signal="pressed" from="CenterContainer/GridContainer/GridContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/GridContainer/Back" to="." method="_on_Back_pressed"]
