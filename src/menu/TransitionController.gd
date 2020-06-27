@@ -2,9 +2,11 @@ extends Node
 
 const TRANSITION_DURATION = 0.5
 
+export (NodePath)var main_menu_path
+
 var history = []
 
-onready var current = get_parent().get_node("MainMenu")
+onready var current = get_node(main_menu_path)
 onready var tween_left = $TweenLeft
 onready var tween_right = $TweenRight
 
@@ -19,6 +21,13 @@ func transiton(to):
 		history.append(current)
 		_transition_left(to)
 		current = to
+		
+		
+func transition_back():
+	_disable_input()
+	var to = history.pop_back()
+	_transition_right(to)
+	current = to
 
 
 func _transition_left(to):

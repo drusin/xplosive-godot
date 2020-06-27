@@ -1,8 +1,6 @@
-extends MarginContainer
+extends AbstractMenu
 
 const Level = "res://src/Level.tscn"
-
-signal transition(to)
 
 onready var minus_button = $CenterContainer/GridContainer/MarginContainer2/Minus
 onready var plus_button = $CenterContainer/GridContainer/MarginContainer/Plus
@@ -26,7 +24,7 @@ func focus_default():
 
 
 func _on_Back_pressed():
-	emit_signal("transition", "main_menu")
+	emit_signal("transition_back")
 
 
 func _on_Start_pressed():

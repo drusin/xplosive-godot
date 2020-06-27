@@ -1,6 +1,4 @@
-extends MarginContainer
-
-signal transition(to)
+extends AbstractMenu
 
 onready var local_button = $CenterContainer/GridContainer/Local
 
@@ -10,11 +8,11 @@ func focus_default():
 
 
 func _on_Local_pressed():
-	emit_signal("transition", "local_menu")
+	emit_signal("transition", "LocalMenu")
 
 
 func _on_Online_pressed():
-	pass # Replace with function body.
+	emit_signal("transition", "OnlineMenu")
 
 
 func _on_Settings_pressed():
