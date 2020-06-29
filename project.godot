@@ -42,11 +42,16 @@ config/name="Xplosive-godot"
 run/main_scene="res://src/menu/Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SignalingClient="*res://src/online/signaling_client.gd"
+Constants="*res://src/constants.gd"
+MultiplayerState="*res://src/online/multiplayer_state.gd"
+
 [display]
 
 window/size/width=64
 window/size/height=64
-window/size/always_on_top=true
 window/size/test_width=640
 window/size/test_height=640
 window/stretch/mode="2d"
@@ -55,6 +60,33 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "aseprite_importer", "open-external-editor" )
+
+[gdnative]
+
+singletons=[ "res://webrtc/webrtc.tres" ]
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [layer_names]
 

@@ -9,6 +9,8 @@ onready var main_menu = $Menus/MainMenu
 
 
 func _ready():
+	SignalingClient.init(Constants.GAME_NAME)
+	
 	for menu in menus.get_children():
 		menu.connect("transition", self, "_on_transition")
 		menu.connect("transition_back", self, "_on_transition_back")

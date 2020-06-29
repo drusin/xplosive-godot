@@ -10,4 +10,4 @@ var fullscreen = false
 
 
 func focus_default():
-	print("You have to override 'focus_default'!")
+	printerr("You have to override 'focus_default' in ", get_name())

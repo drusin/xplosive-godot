@@ -1,10 +1,23 @@
-[gd_resource type="Theme" load_steps=5 format=2]
+[gd_resource type="Theme" load_steps=14 format=2]
 
 [ext_resource path="res://assets/SmallFont.res" type="DynamicFont" id=1]
 [ext_resource path="res://assets/theme/button_normal.res" type="StyleBox" id=2]
 [ext_resource path="res://assets/theme/button_focus.res" type="StyleBox" id=3]
 [ext_resource path="res://assets/theme/button_pressed.res" type="StyleBox" id=4]
+[ext_resource path="res://assets/theme/line_edit_normal.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/theme/line_edit_focus.tres" type="StyleBox" id=6]
+[ext_resource path="res://assets/theme/grabber.tres" type="StyleBox" id=7]
+[ext_resource path="res://assets/theme/scroll.tres" type="StyleBox" id=8]
 
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
 
 [resource]
 default_font = ExtResource( 1 )
@@ -21,3 +34,34 @@ Button/styles/normal = ExtResource( 2 )
 Button/styles/pressed = ExtResource( 4 )
 GridContainer/constants/hseparation = 0
 GridContainer/constants/vseparation = 0
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = SubResource( 1 )
+HScrollBar/styles/grabber_highlight = SubResource( 2 )
+HScrollBar/styles/grabber_pressed = SubResource( 3 )
+HScrollBar/styles/scroll = SubResource( 4 )
+HScrollBar/styles/scroll_focus = SubResource( 5 )
+LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
+LineEdit/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
+LineEdit/colors/selection_color = Color( 0.49, 0.49, 0.49, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = ExtResource( 6 )
+LineEdit/styles/normal = ExtResource( 5 )
+LineEdit/styles/read_only = null
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = ExtResource( 7 )
+VScrollBar/styles/grabber_highlight = ExtResource( 7 )
+VScrollBar/styles/grabber_pressed = ExtResource( 7 )
+VScrollBar/styles/scroll = ExtResource( 8 )
+VScrollBar/styles/scroll_focus = ExtResource( 8 )

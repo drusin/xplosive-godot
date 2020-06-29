@@ -23,7 +23,7 @@ margin_bottom = 33.0
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 margin_left = 18.0
-margin_right = 46.0
+margin_right = 45.0
 margin_bottom = 31.0
 custom_constants/vseparation = 2
 __meta__ = {
@@ -31,20 +31,21 @@ __meta__ = {
 }
 
 [node name="Create" type="Button" parent="CenterContainer/GridContainer"]
-margin_right = 28.0
+margin_right = 27.0
 margin_bottom = 9.0
 text = "Create"
 
 [node name="Join" type="Button" parent="CenterContainer/GridContainer"]
 margin_top = 11.0
-margin_right = 28.0
+margin_right = 27.0
 margin_bottom = 20.0
 text = "Join"
 
 [node name="Back" type="Button" parent="CenterContainer/GridContainer"]
 margin_top = 22.0
-margin_right = 28.0
+margin_right = 27.0
 margin_bottom = 31.0
 text = "Back"
 [connection signal="pressed" from="CenterContainer/GridContainer/Create" to="." method="_on_Create_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Join" to="." method="_on_Join_pressed"]
 [connection signal="pressed" from="CenterContainer/GridContainer/Back" to="." method="_on_Back_pressed"]

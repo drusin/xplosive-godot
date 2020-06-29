@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/menu/Menu.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/menu/online/OnlineMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/menu/online/OnlineMenu.gd" type="Script" id=8]
 [ext_resource path="res://src/menu/online/CreateMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/menu/online/JoinMenu.tscn" type="PackedScene" id=10]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -46,10 +47,12 @@ visible = false
 [node name="CreateMenu" parent="Menus" instance=ExtResource( 9 )]
 visible = false
 
+[node name="JoinMenu" parent="Menus" instance=ExtResource( 10 )]
+visible = false
+
 [node name="TransitionController" type="Node" parent="."]
 script = ExtResource( 6 )
 main_menu_path = NodePath("../Menus/MainMenu")
+logo_path = NodePath("../TextureRect")
 
-[node name="TweenLeft" type="Tween" parent="TransitionController"]
-
-[node name="TweenRight" type="Tween" parent="TransitionController"]
+[node name="Tween" type="Tween" parent="TransitionController"]
