@@ -15,6 +15,7 @@ func focus_default():
 
 func _on_Create_pressed():
 	SignalingClient.create_lobby(name_edit.text, password_edit.text, Constants.MAX_PLAYERS)
+	emit_signal("transition", "Lobby")
 
 
 func _on_Back_pressed():

@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/menu/online/Lobby.gd" type="Script" id=3]
+[ext_resource path="res://assets/lobby-icons/options.png" type="Texture" id=4]
+[ext_resource path="res://src/menu/online/Player.tscn" type="PackedScene" id=5]
+
+[node name="Lobby" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 64.0
+margin_bottom = 63.0
+custom_constants/separation = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 62.0
+margin_bottom = 9.0
+custom_constants/margin_bottom = 2
+
+[node name="LobbyName" type="Label" parent="VBoxContainer/MarginContainer"]
+margin_right = 62.0
+margin_bottom = 7.0
+
+[node name="LobbyNameEdit" type="LineEdit" parent="VBoxContainer/MarginContainer"]
+visible = false
+margin_right = 59.0
+margin_bottom = 9.0
+size_flags_horizontal = 0
+custom_constants/minimum_spaces = 19
+
+[node name="Player1" parent="VBoxContainer" instance=ExtResource( 5 )]
+visible = false
+anchor_right = 0.0
+margin_top = 12.0
+margin_right = 62.0
+margin_bottom = 21.0
+
+[node name="Player2" parent="VBoxContainer" instance=ExtResource( 5 )]
+visible = false
+anchor_right = 0.0
+margin_top = 22.0
+margin_right = 62.0
+margin_bottom = 31.0
+
+[node name="Player3" parent="VBoxContainer" instance=ExtResource( 5 )]
+visible = false
+anchor_right = 0.0
+margin_top = 32.0
+margin_right = 62.0
+margin_bottom = 41.0
+
+[node name="Player4" parent="VBoxContainer" instance=ExtResource( 5 )]
+visible = false
+anchor_right = 0.0
+margin_top = 42.0
+margin_right = 62.0
+margin_bottom = 51.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 10.0
+margin_right = 62.0
+margin_bottom = 21.0
+custom_constants/margin_top = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+margin_top = 2.0
+margin_right = 33.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+
+[node name="Start" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
+visible = false
+margin_right = 23.0
+margin_bottom = 9.0
+text = "Start"
+
+[node name="Back" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
+margin_right = 19.0
+margin_bottom = 9.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
+margin_left = 23.0
+margin_right = 33.0
+margin_bottom = 9.0
+icon = ExtResource( 4 )
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Back" to="." method="_on_Back_pressed"]

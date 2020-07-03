@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/aseprite_importer/classes/AsepriteImporter.gd"
 }, {
+"base": "Object",
+"class": "Constants",
+"language": "GDScript",
+"path": "res://src/constants.gd"
+}, {
 "base": "Node",
 "class": "EditorTheme",
 "language": "GDScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "AbstractMenu": "",
 "AsepriteImportData": "",
 "AsepriteImporter": "",
+"Constants": "",
 "EditorTheme": ""
 }
 
@@ -45,8 +51,8 @@ config/icon="res://icon.png"
 [autoload]
 
 SignalingClient="*res://src/online/signaling_client.gd"
-Constants="*res://src/constants.gd"
 MultiplayerState="*res://src/online/multiplayer_state.gd"
+Settings="*res://src/settings.gd"
 
 [display]
 

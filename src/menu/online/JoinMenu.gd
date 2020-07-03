@@ -36,7 +36,8 @@ func create_lobby_button(lobby):
 
 
 func join_lobby(lobby):
-	print(lobby)
+	SignalingClient.join_lobby(lobby.id)
+	emit_signal("transition", "Lobby")
 
 
 func _on_Back_pressed():

@@ -1,17 +1,16 @@
 tool
 extends KinematicBody2D
 
-enum PlayerColor { Blue, Green, Purple, Red }
 const LAYERS = {
-	PlayerColor.Blue: 2,
-	PlayerColor.Green: 3,
-	PlayerColor.Purple: 4,
-	PlayerColor.Red: 5
+	Constants.PlayerColor.Blue: 2,
+	Constants.PlayerColor.Green: 3,
+	Constants.PlayerColor.Purple: 4,
+	Constants.PlayerColor.Red: 5
 }
 
 const Bomb = preload("res://src/Bomb.tscn")
 
-export (PlayerColor)var player_color = PlayerColor.Blue
+export (Constants.PlayerColor)var player_color = Constants.PlayerColor.Blue
 export var SPEED = 20
 export var max_bombs = 2
 export var power = 2
@@ -19,16 +18,17 @@ export var power = 2
 var velocity = Vector2.ZERO
 var dead = false
 
-onready var player_color_str = PlayerColor.keys()[player_color]
+onready var player_color_str = Constants.PlayerColor.keys()[player_color]
 onready var animation_tree = $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 onready var bomb_detector = $BombDetector
 onready var controller = $Controller
 onready var current_bombs = max_bombs
 
+
 func _ready():
 	set_collision_mask_bit(LAYERS[player_color], true)
-	for i in PlayerColor:
+	for i in Constants.PlayerColor:
 		get_node(i).visible = i == player_color_str
 	if not Engine.editor_hint:
 		animation_tree.anim_player = get_node(player_color_str + "/AnimationPlayer").get_path()
@@ -54,8 +54,8 @@ func is_on_bomb():
 
 func _death_anim_finished():
 	queue_free()
-	
-	
+
+
 func explode(_position, _timeout):
 	animation_state.travel("Dead")
 	dead = true

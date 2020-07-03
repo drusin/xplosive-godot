@@ -1,6 +1,8 @@
 extends Node
 
 signal lobby_list_recieved(lobbies)
+signal lobby_update_recieved(lobby)
+signal lobby_deleted(lobby_id)
 
 const PEER_CONFIG = { "iceServers": [ { "urls": ["stun:stun.l.google.com:19302"] } ] }
 
@@ -17,9 +19,12 @@ const MESSAGES = {
 	CREATE_LOBBY = "CREATE_LOBBY",
 	SEAL_LOBBY = "SEAL_LOBBY",
 	JOIN_LOBBY = "JOIN_LOBBY",
+	LEAVE_LOBBY = "LEAVE_LOBBY",
 	DELETE_LOBBY = "DELETE_LOBBY",
 	LOBBY_UPDATE = "LOBBY_UPDATE",
 	LOBBY_LIST = "LOBBY_LIST",
+	HOST_ID = "HOST_ID",
+	ALIAS = "ALIAS",
 	# old, still needed?
 	START_SERVER = "START_SERVER",
 	JOIN_SERVER = "JOIN_SERVER",
@@ -55,6 +60,10 @@ func disconnect_from_host():
 	client.disconnect_from_host()
 
 
+func send_alias(alias):
+	_send_message(MESSAGES.ALIAS, { alias = alias })
+
+
 func create_lobby(name, password, max_players):
 	_send_message(MESSAGES.CREATE_LOBBY, {
 		name = name,
@@ -65,11 +74,28 @@ func create_lobby(name, password, max_players):
 
 
 func join_lobby(lobby_id):
-	print("Wanna join lobby ", lobby_id)
+	_send_message(MESSAGES.JOIN_LOBBY, { id = lobby_id })
 
 
-func seal_lobby(lobby_id):
-	print("Wanna seal lobby ", lobby_id)
+func leave_lobby():
+	_send_message(MESSAGES.LEAVE_LOBBY)
+
+
+func seal_lobby():
+	_send_message(MESSAGES.SEAL_LOBBY)
+
+
+func delete_lobby():
+	_send_message(MESSAGES.DELETE_LOBBY)
+
+
+func disconnect_from_peer(peer_id):
+	rtc_multiplayer.remove_peer(peer_id)
+
+
+func disconnect_all_peers():
+	for id in rtc_multiplayer.get_peers().keys():
+		disconnect_from_peer(id)
 
 
 func send_offer(id, sdp):
@@ -106,7 +132,12 @@ func _on_peer_connected(id):
 # warning-ignore:return_value_discarded
 	peer.connect("ice_candidate_created", self, "_on_ice_candidate_created", [id])
 	rtc_multiplayer.add_peer(peer, id)
-	print('Peer added: ' + str(id))
+	print("Peer added: ", id)
+
+
+func _on_peer_disconnected(id):
+	disconnect_from_peer(id)
+	print("Peer removed: ", id)
 
 
 func _on_session_description_created(type, sdp, id):
@@ -116,7 +147,7 @@ func _on_session_description_created(type, sdp, id):
 		'answer': SignalingClient.send_answer(id, sdp)
 
 
-func _on_server_id_recieved(id):
+func _on_host_id_recieved(id):
 	if id == rtc_multiplayer.get_unique_id():
 		return
 	rtc_multiplayer.get_peer(id).connection.create_offer()
@@ -166,8 +197,10 @@ func _parse_message(message):
 			_on_connected(message.payload.id)
 		MESSAGES.PEER:
 			_on_peer_connected(message.payload.id)
-		MESSAGES.SERVER_ID:
-			_on_server_id_recieved(message.payload.id)
+		MESSAGES.REMOVE_PEER:
+			_on_peer_disconnected(message.payload.id)
+		MESSAGES.HOST_ID:
+			_on_host_id_recieved(message.payload.id)
 		MESSAGES.OFFER:
 			_on_offer_recieved(message.payload.id, message.payload.sdp)
 		MESSAGES.ANSWER:
@@ -185,3 +218,20 @@ func _parse_message(message):
 					player_count = lobby.playerCount
 				})
 			emit_signal("lobby_list_recieved", lobbies)
+		MESSAGES.LOBBY_UPDATE:
+			var players = []
+			for player in message.payload.players:
+				players.append({
+					alias = player.alias,
+					is_host = player.isHost,
+					id = player.id
+				})
+			emit_signal("lobby_update_recieved", {
+				id = message.payload.id,
+				name = message.payload.name,
+				has_password = message.payload.hasPassword,
+				players = players
+			})
+		MESSAGES.DELETE_LOBBY:
+			emit_signal("lobby_deleted", message.payload.id)
+		
