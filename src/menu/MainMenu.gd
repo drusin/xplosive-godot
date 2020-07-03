@@ -13,6 +13,7 @@ func _on_Local_pressed():
 
 func _on_Online_pressed():
 	SignalingClient.connect_to(Constants.SIGNALING_URL)
+	MultiplayerState.online = true
 	emit_signal("transition", "OnlineMenu")
 
 

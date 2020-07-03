@@ -50,7 +50,7 @@ func update_lobby():
 	else:
 		lobby_name_label.visible = true
 		lobby_name_edit.visible = false
-		start_button.visible = true
+		start_button.visible = false
 	
 	for player in players:
 		player.visible = false
@@ -85,4 +85,5 @@ func _on_Start_pressed():
 
 
 remotesync func start_game():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(Level)

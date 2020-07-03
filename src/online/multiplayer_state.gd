@@ -2,7 +2,7 @@ extends Node
 
 signal lobby_updated()
 
-var online = true
+var online = false
 
 var lobby = {
 	id = 1234567,

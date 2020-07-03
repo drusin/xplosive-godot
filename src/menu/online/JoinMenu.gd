@@ -1,6 +1,7 @@
 extends AbstractMenu
 
 const ICON_PATH_TEMPLATE = "res://assets/lobby-icons/%s_%d.png"
+var ICONS = load("res://assets/lobby-icons/icons.png")
 
 onready var back_button = $GridContainer/Back
 onready var lobby_container = $GridContainer/Control/ScrollContainer/LobbyContainer
@@ -26,9 +27,16 @@ func update_lobbies(lobbies):
 
 func create_lobby_button(lobby):
 	var button = Button.new()
+
+	var atlas_texture = AtlasTexture.new()
+	atlas_texture.atlas = ICONS
+	atlas_texture.region.position.x = 5 * (lobby.player_count - 1)
+	atlas_texture.region.position.y = 0 if lobby.has_password else 7
+	atlas_texture.region.size.x = 5
+	atlas_texture.region.size.y = 7
+	button.icon = atlas_texture
+	
 	button.text = lobby.name
-	var prefix = "pw" if lobby.has_password else "no_pw"
-	button.icon = load(ICON_PATH_TEMPLATE % [prefix, lobby.player_count])
 	button.size_flags_horizontal = SIZE_EXPAND_FILL
 	button.align = Button.ALIGN_LEFT
 	button.connect("pressed", self, "join_lobby", [lobby])

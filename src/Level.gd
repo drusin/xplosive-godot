@@ -16,11 +16,13 @@ func _ready():
 		player.player_color = lobby_player.player_color
 		var position = spawn_points.get_children()[i].global_position
 		player.global_position = Vector2(position.x, position.y)
-		players.add_child(player)
-		i += 1
 		
 		if MultiplayerState.online:
 			player.get_node("Controller").set_network_master(lobby_player.id)
 			player.set_name(str(lobby_player.id))
+		
+		players.add_child(player)
+		i += 1
+
 	
 	bomb_controller.init()
