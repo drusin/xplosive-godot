@@ -23,7 +23,6 @@ const MESSAGES = {
 	DELETE_LOBBY = "DELETE_LOBBY",
 	LOBBY_UPDATE = "LOBBY_UPDATE",
 	LOBBY_LIST = "LOBBY_LIST",
-	HOST_ID = "HOST_ID",
 	ALIAS = "ALIAS",
 	# old, still needed?
 	START_SERVER = "START_SERVER",
@@ -98,88 +97,6 @@ func disconnect_all_peers():
 		disconnect_from_peer(id)
 
 
-func send_offer(id, sdp):
-	_send_message(MESSAGES.OFFER, { id = id, sdp = sdp })
-
-
-func send_answer(id, sdp):
-	_send_message(MESSAGES.ANSWER, { id = id, sdp = sdp })
-
-
-func send_candidate(id, mid_name, index_name, sdp_name):
-	_send_message(MESSAGES.CANDIDATE, {
-		id = id,
-		midName = mid_name, 
-		indexName = index_name, 
-		sdpName = sdp_name
-	})
-
-
-func _on_connected(id):
-	rtc_multiplayer.initialize(id, true)
-	get_tree().set_network_peer(rtc_multiplayer)
-	print('My ID: ' + str(id))
-
-
-func _on_peer_connected(id):
-	if id == rtc_multiplayer.get_unique_id():
-		return
-	var peer : WebRTCPeerConnection = WebRTCPeerConnection.new()
-# warning-ignore:return_value_discarded
-	peer.initialize(PEER_CONFIG)
-# warning-ignore:return_value_discarded
-	peer.connect("session_description_created", self, "_on_session_description_created", [id])
-# warning-ignore:return_value_discarded
-	peer.connect("ice_candidate_created", self, "_on_ice_candidate_created", [id])
-	rtc_multiplayer.add_peer(peer, id)
-	print("Peer added: ", id)
-
-
-func _on_peer_disconnected(id):
-	disconnect_from_peer(id)
-	print("Peer removed: ", id)
-
-
-func _on_session_description_created(type, sdp, id):
-	rtc_multiplayer.get_peer(id).connection.set_local_description(type, sdp)
-	match type:
-		'offer': SignalingClient.send_offer(id, sdp)
-		'answer': SignalingClient.send_answer(id, sdp)
-
-
-func _on_host_id_recieved(id):
-	if id == rtc_multiplayer.get_unique_id():
-		return
-	rtc_multiplayer.get_peer(id).connection.create_offer()
-
-
-func _on_offer_recieved(id, offer):
-	rtc_multiplayer.get_peer(id).connection.set_remote_description("offer", offer)
-	
-	
-func _on_answer_recieved(id, answer):
-	rtc_multiplayer.get_peer(id).connection.set_remote_description("answer", answer)
-	
-	
-func _on_candiate_recieved(id, mid_name, index_name, sdp_name):
-	rtc_multiplayer.get_peer(id).connection.add_ice_candidate(mid_name, index_name, sdp_name)
-	
-
-func _on_ice_candidate_created(mid_name, index_name, sdp_name, id):
-	send_candidate(id, mid_name, index_name, sdp_name)
-
-
-func _send_message(header, payload: = {}):
-	client.get_peer(1).put_packet(_create_msg(header, payload).to_utf8())
-
-
-static func _create_msg(type, payload: = {}):
-	return JSON.print({
-		"type": type,
-		"payload": payload
-	})
-
-
 func _on_connection_established(_protocol):
 	print(client.get_connected_host())
 	client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
@@ -191,22 +108,20 @@ func _on_data_received():
 
 
 func _parse_message(message):
-	print(message)
+	print(message.type)
 	match message.type:
 		MESSAGES.ID:
-			_on_connected(message.payload.id)
+			_initialize_mp(message.payload.id)
 		MESSAGES.PEER:
-			_on_peer_connected(message.payload.id)
+			_add_peer(message.payload.id)
 		MESSAGES.REMOVE_PEER:
-			_on_peer_disconnected(message.payload.id)
-		MESSAGES.HOST_ID:
-			_on_host_id_recieved(message.payload.id)
+			_remove_peer(message.payload.id)
 		MESSAGES.OFFER:
-			_on_offer_recieved(message.payload.id, message.payload.sdp)
+			_set_offer(message.payload.id, message.payload.sdp)
 		MESSAGES.ANSWER:
-			_on_answer_recieved(message.payload.id, message.payload.sdp)
+			_set_answer(message.payload.id, message.payload.sdp)
 		MESSAGES.CANDIDATE:
-			_on_candiate_recieved(message.payload.id, message.payload.midName,
+			_add_candidate(message.payload.id, message.payload.midName,
 					message.payload.indexName, message.payload.sdpName)
 		MESSAGES.LOBBY_LIST:
 			var lobbies = []
@@ -234,4 +149,77 @@ func _parse_message(message):
 			})
 		MESSAGES.DELETE_LOBBY:
 			emit_signal("lobby_deleted", message.payload.id)
-		
+
+
+func _initialize_mp(id):
+	rtc_multiplayer.initialize(id, true)
+	get_tree().set_network_peer(rtc_multiplayer)
+	print('My ID: ' + str(id))
+
+
+func _add_peer(id):
+	if id == rtc_multiplayer.get_unique_id():
+		return
+	var peer := WebRTCPeerConnection.new()
+# warning-ignore:return_value_discarded
+	peer.initialize(PEER_CONFIG)
+# warning-ignore:return_value_discarded
+	peer.connect("session_description_created", self, "_on_session_description_created", [id])
+# warning-ignore:return_value_discarded
+	peer.connect("ice_candidate_created", self, "_on_ice_candidate_created", [id])
+	rtc_multiplayer.add_peer(peer, id)
+	print("Peer added: ", id)
+	if rtc_multiplayer.get_unique_id() != NetworkedMultiplayerPeer.TARGET_PEER_SERVER:
+		rtc_multiplayer.get_peer(id).connection.create_offer()
+
+
+func _on_session_description_created(type, sdp, id):
+	rtc_multiplayer.get_peer(id).connection.set_local_description(type, sdp)
+	match type:
+		'offer': _send_offer(id, sdp)
+		'answer': _send_answer(id, sdp)
+
+
+func _send_offer(id, sdp):
+	_send_message(MESSAGES.OFFER, { id = id, sdp = sdp })
+
+
+func _send_answer(id, sdp):
+	_send_message(MESSAGES.ANSWER, { id = id, sdp = sdp })
+
+
+func _on_ice_candidate_created(mid_name, index_name, sdp_name, id):
+	_send_message(MESSAGES.CANDIDATE, {
+		id = id,
+		midName = mid_name, 
+		indexName = index_name, 
+		sdpName = sdp_name
+	})
+
+
+func _remove_peer(id):
+	disconnect_from_peer(id)
+	print("Peer removed: ", id)
+
+
+func _set_offer(id, offer):
+	rtc_multiplayer.get_peer(id).connection.set_remote_description("offer", offer)
+
+
+func _set_answer(id, answer):
+	rtc_multiplayer.get_peer(id).connection.set_remote_description("answer", answer)
+
+
+func _add_candidate(id, mid_name, index_name, sdp_name):
+	rtc_multiplayer.get_peer(id).connection.add_ice_candidate(mid_name, index_name, sdp_name)
+
+
+func _send_message(header, payload: = {}):
+	client.get_peer(1).put_packet(_create_msg(header, payload).to_utf8())
+
+
+static func _create_msg(type, payload: = {}):
+	return JSON.print({
+		"type": type,
+		"payload": payload
+	})

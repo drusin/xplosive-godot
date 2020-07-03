@@ -62,7 +62,7 @@ tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.666, 1.332, 1.998 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),

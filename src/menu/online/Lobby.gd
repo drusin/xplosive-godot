@@ -1,5 +1,7 @@
 extends AbstractMenu
 
+const Level = preload("res://src/Level.tscn")
+
 var lobby_id := -1
 
 onready var lobby_name_label = $VBoxContainer/MarginContainer/LobbyName
@@ -48,14 +50,14 @@ func update_lobby():
 	else:
 		lobby_name_label.visible = true
 		lobby_name_edit.visible = false
-		start_button.visible = false
+		start_button.visible = true
 	
 	for player in players:
 		player.visible = false
 	
 	var i = 0
 	for player in MultiplayerState.players.values():
-		players[i].setup(player, i)
+		players[i].setup(player)
 		i += 1
 
 
@@ -76,3 +78,11 @@ func _leave_lobby():
 		SignalingClient.delete_lobby()
 	else:
 		SignalingClient.leave_lobby()
+
+
+func _on_Start_pressed():
+	rpc("start_game")
+
+
+remotesync func start_game():
+	get_tree().change_scene_to(Level)

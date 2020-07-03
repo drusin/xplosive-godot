@@ -9,6 +9,9 @@ var players;
 
 func _ready():
 	_assure_players()
+
+
+func init():
 	players = get_node(players_path)
 	for player in players.get_children():
 		call_deferred("_connect_to_controller", player)
@@ -25,6 +28,7 @@ func _assure_players():
 		area.add_child(Player.instance())
 		add_child(area)
 		players_path = area.get_path()
+		init()
 
 
 func _on_bomb_pressed(player):

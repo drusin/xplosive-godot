@@ -6,9 +6,9 @@ onready var name_label = $Name
 onready var name_edit = $NameEdit
 
 
-func setup(player, color = Constants.PlayerColor.Blue):
+func setup(player):
 	visible = true
-	set_color(color)
+	set_color(player.player_color)
 	name_label.text = player.alias
 	name_edit.text = player.alias
 	if player.id == multiplayer.get_network_unique_id():

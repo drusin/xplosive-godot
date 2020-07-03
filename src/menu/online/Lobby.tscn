@@ -32,6 +32,7 @@ custom_constants/margin_bottom = 2
 [node name="LobbyName" type="Label" parent="VBoxContainer/MarginContainer"]
 margin_right = 62.0
 margin_bottom = 7.0
+text = "lobby name"
 
 [node name="LobbyNameEdit" type="LineEdit" parent="VBoxContainer/MarginContainer"]
 visible = false
@@ -41,11 +42,10 @@ size_flags_horizontal = 0
 custom_constants/minimum_spaces = 19
 
 [node name="Player1" parent="VBoxContainer" instance=ExtResource( 5 )]
-visible = false
 anchor_right = 0.0
-margin_top = 12.0
+margin_top = 10.0
 margin_right = 62.0
-margin_bottom = 21.0
+margin_bottom = 18.0
 
 [node name="Player2" parent="VBoxContainer" instance=ExtResource( 5 )]
 visible = false
@@ -69,9 +69,9 @@ margin_right = 62.0
 margin_bottom = 51.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 10.0
+margin_top = 19.0
 margin_right = 62.0
-margin_bottom = 21.0
+margin_bottom = 30.0
 custom_constants/margin_top = 2
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
@@ -99,4 +99,5 @@ margin_left = 23.0
 margin_right = 33.0
 margin_bottom = 9.0
 icon = ExtResource( 4 )
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Back" to="." method="_on_Back_pressed"]
