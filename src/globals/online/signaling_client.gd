@@ -98,7 +98,6 @@ func disconnect_all_peers():
 
 
 func _on_connection_established(_protocol):
-	print(client.get_connected_host())
 	client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
 
 

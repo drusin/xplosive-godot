@@ -1,14 +1,12 @@
 tool
 extends KinematicBody2D
 
-const LAYERS = {
+const LAYERS := {
 	Constants.PlayerColor.Blue: 2,
 	Constants.PlayerColor.Green: 3,
 	Constants.PlayerColor.Purple: 4,
-	Constants.PlayerColor.Red: 5
+	Constants.PlayerColor.Red: 5,
 }
-
-const Bomb = preload("res://src/Bomb.tscn")
 
 export (Constants.PlayerColor)var player_color = Constants.PlayerColor.Blue
 export var SPEED = 20

@@ -1,8 +1,7 @@
 extends Node2D
 
-const Player = preload("res://src/Player.tscn")
-const Bomb = preload("res://src/Bomb.tscn")
-
+export (PackedScene)var Player
+export (PackedScene)var Bomb
 export (NodePath)var players_path
 
 var players;

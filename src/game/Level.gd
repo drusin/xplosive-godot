@@ -1,6 +1,6 @@
 extends Node2D
 
-const Player = preload("res://src/Player.tscn")
+export (PackedScene)var Player
 
 onready var players = $Players
 onready var bomb_controller = $BombController

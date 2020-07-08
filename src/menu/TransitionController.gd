@@ -36,6 +36,7 @@ func _transition_left(to):
 	tween.interpolate_property(current, "rect_position", null, Vector2(-64, initial_left.y), TRANSITION_DURATION)
 	tween.interpolate_callback(self, TRANSITION_DURATION, "_after_transition", current)
 	
+	to.on_show()
 	to.visible = true
 	to.rect_position.x = 64
 	var initial_right = to.rect_position
@@ -60,6 +61,7 @@ func _transition_logo_from_right():
 
 
 func _transition_right(to):
+	to.on_show()
 	to.visible = true
 	to.rect_position.x = -64
 	var initial_left = to.rect_position
@@ -91,6 +93,7 @@ func _after_transition(old):
 	old.visible = false
 	_enable_input()
 	current.call_deferred("focus_default")
+	old.on_hide()
 
 
 func _disable_input():

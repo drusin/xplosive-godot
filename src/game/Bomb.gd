@@ -3,9 +3,9 @@ extends StaticBody2D
 signal exploded(player)
 
 const BITS_TO_CHECK = [2, 3, 4, 5]
-const FireController = preload("res://src/FireController.tscn")
 
 export var power = 2
+export (PackedScene)var FireController
 
 var player
 

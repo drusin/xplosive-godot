@@ -1,6 +1,6 @@
 extends AbstractMenu
 
-const Level = preload("res://src/Level.tscn")
+export (PackedScene)var Level
 
 var lobby_id := -1
 

@@ -1,6 +1,7 @@
 extends AbstractMenu
 
-const Level = "res://src/Level.tscn"
+export (PackedScene)var Level
+#const Level = "res://src/Level.tscn"
 
 onready var minus_button = $CenterContainer/GridContainer/MarginContainer2/Minus
 onready var plus_button = $CenterContainer/GridContainer/MarginContainer/Plus
@@ -29,4 +30,4 @@ func _on_Back_pressed():
 
 func _on_Start_pressed():
 # warning-ignore:return_value_discarded
-	get_tree().change_scene(Level)
+	get_tree().change_scene_to(Level)

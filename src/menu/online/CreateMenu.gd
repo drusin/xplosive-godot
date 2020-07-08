@@ -13,6 +13,11 @@ func focus_default():
 	create_button.grab_focus()
 
 
+func on_show():
+	name_edit.text = Settings.server_name
+	password_edit.text = Settings.server_password
+
+
 func _on_Create_pressed():
 	SignalingClient.create_lobby(name_edit.text, password_edit.text, Constants.MAX_PLAYERS)
 	emit_signal("transition", "Lobby")

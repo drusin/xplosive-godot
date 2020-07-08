@@ -1,7 +1,6 @@
 extends Node2D
 
-const Fire = preload("res://src/Fire.tscn")
-
+export (PackedScene)var Fire
 export var power = 3
 
 onready var parent = get_parent()

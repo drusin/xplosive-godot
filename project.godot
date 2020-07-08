@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Constants",
 "language": "GDScript",
-"path": "res://src/constants.gd"
+"path": "res://src/globals/constants.gd"
 }, {
 "base": "Node",
 "class": "EditorTheme",
@@ -46,14 +46,14 @@ _global_script_class_icons={
 
 config/name="Xplosive-godot"
 run/main_scene="res://src/menu/Menu.tscn"
-boot_splash/bg_color=Color( 0.00784314, 0.00784314, 0.129412, 1 )
+boot_splash/bg_color=Color( 0.00392157, 0.00392157, 0.0470588, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
-SignalingClient="*res://src/online/signaling_client.gd"
-MultiplayerState="*res://src/online/multiplayer_state.gd"
-Settings="*res://src/settings.gd"
+SignalingClient="*res://src/globals/online/signaling_client.gd"
+MultiplayerState="*res://src/globals/online/multiplayer_state.gd"
+Settings="*res://src/globals/settings.gd"
 
 [display]
 
@@ -111,5 +111,5 @@ texture={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.00784314, 0.00784314, 0.129412, 1 )
+environment/default_clear_color=Color( 0.00392157, 0.00392157, 0.054902, 1 )
 environment/default_environment="res://default_env.tres"

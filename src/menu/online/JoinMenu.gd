@@ -31,7 +31,7 @@ func create_lobby_button(lobby):
 	var atlas_texture = AtlasTexture.new()
 	atlas_texture.atlas = ICONS
 	atlas_texture.region.position.x = 5 * (lobby.player_count - 1)
-	atlas_texture.region.position.y = 0 if lobby.has_password else 7
+	atlas_texture.region.position.y = 0 if !lobby.has_password else 7
 	atlas_texture.region.size.x = 5
 	atlas_texture.region.size.y = 7
 	button.icon = atlas_texture
