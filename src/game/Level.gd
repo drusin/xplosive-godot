@@ -10,10 +10,10 @@ func _ready():
 	for child in players.get_children():
 		child.free()
 	
-	var i = 0
+	var i := 0
 	for lobby_player in MultiplayerState.players.values():
 		var player = Player.instance()
-		player.player_color = lobby_player.player_color
+		player.player_number = lobby_player.number
 		var position = spawn_points.get_children()[i].global_position
 		player.global_position = Vector2(position.x, position.y)
 		
@@ -23,6 +23,5 @@ func _ready():
 		
 		players.add_child(player)
 		i += 1
-
 	
 	bomb_controller.init()

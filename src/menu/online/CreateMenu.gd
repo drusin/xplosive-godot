@@ -14,11 +14,14 @@ func focus_default():
 
 
 func on_show():
-	name_edit.text = Settings.server_name
-	password_edit.text = Settings.server_password
+	name_edit.text = Settings.values.lobby_name
+	password_edit.text = Settings.values.lobby_password
 
 
 func _on_Create_pressed():
+	Settings.values.lobby_name = name_edit.text
+	Settings.values.lobby_password = password_edit.text
+	Settings.save_settings()
 	SignalingClient.create_lobby(name_edit.text, password_edit.text, Constants.MAX_PLAYERS)
 	emit_signal("transition", "Lobby")
 

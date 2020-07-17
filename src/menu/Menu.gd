@@ -1,15 +1,15 @@
 extends Control
 
-onready var transition_controller = $TransitionController
+onready var transition_controller := $TransitionController
 
-var submenus = {}
+var submenus := {}
 
-onready var menus = $Menus
-onready var main_menu = $Menus/MainMenu
+onready var menus := $Menus
+onready var main_menu := $Menus/MainMenu
 
 
-func _ready():
-	SignalingClient.init(Constants.GAME_NAME)
+func _ready() -> void:
+	Settings.load_settings()
 	
 	for menu in menus.get_children():
 		menu.connect("transition", self, "_on_transition")
@@ -19,9 +19,9 @@ func _ready():
 	main_menu.focus_default()
 
 
-func _on_transition(to):
-	transition_controller.transiton(submenus[to])
+func _on_transition(to) -> void:
+	transition_controller.transition(submenus[to])
 
 
-func _on_transition_back():
+func _on_transition_back() -> void:
 	transition_controller.transition_back()

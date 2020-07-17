@@ -1,22 +1,18 @@
 extends AbstractMenu
 
+const Player := preload("res://src/menu/online/Player.tscn")
+
 export (PackedScene)var Level
 
 var lobby_id := -1
 
-onready var lobby_name_label = $VBoxContainer/MarginContainer/LobbyName
-onready var lobby_name_edit = $VBoxContainer/MarginContainer/LobbyNameEdit
-onready var player_container = $VBoxContainer
-onready var start_button = $VBoxContainer/MarginContainer2/HBoxContainer5/Start
-onready var back_button = $VBoxContainer/MarginContainer2/HBoxContainer5/Back
-onready var players = [
-	$VBoxContainer/Player1,
-	$VBoxContainer/Player2,
-	$VBoxContainer/Player3,
-	$VBoxContainer/Player4
-]
+onready var lobby_name_label := $VBoxContainer/MarginContainer/LobbyName
+onready var player_container := $VBoxContainer/Players
+onready var start_button := $VBoxContainer/MarginContainer2/HBoxContainer5/Start
+onready var back_button := $VBoxContainer/MarginContainer2/HBoxContainer5/Back
 
-func _ready():
+
+func _ready() -> void:
 	fullscreen = true
 # warning-ignore:return_value_discarded
 	MultiplayerState.connect("lobby_updated", self, "update_lobby")
@@ -31,46 +27,44 @@ func _print_message(id, message : PoolByteArray):
 	print(message.get_string_from_utf8())
 
 
-func focus_default():
+func focus_default() -> void:
 	if get_tree().is_network_server():
 		start_button.grab_focus() 
 	else:
 		back_button.grab_focus()
 
 
-func update_lobby():
+func update_lobby() -> void:
 	lobby_id = MultiplayerState.lobby.id
 	lobby_name_label.text = MultiplayerState.lobby.name
-	lobby_name_edit.text = MultiplayerState.lobby.name
 	
-	if get_tree().is_network_server():
-		lobby_name_label.visible = false
-		lobby_name_edit.visible = true
-		start_button.visible = true
-	else:
-		lobby_name_label.visible = true
-		lobby_name_edit.visible = false
-		start_button.visible = false
+	start_button.visible = get_tree().is_network_server()
 	
-	for player in players:
-		player.visible = false
+	for player in player_container.get_children():
+		player.queue_free()
 	
-	var i = 0
+	var i := 1
 	for player in MultiplayerState.players.values():
-		players[i].setup(player)
+		var player_ui = Player.instance()
+		player_container.add_child(player_ui)
+		player_ui.setup(i, player)
 		i += 1
 
 
-func _on_lobby_deleted(_lobby_id):
+func _on_player_name_changed(text: String) -> void:
+	SignalingClient.send_alias(text)
+
+
+func _on_lobby_deleted(_lobby_id) -> void:
 	if _lobby_id == lobby_id:
 		_leave_lobby()
 
 
-func _on_Back_pressed():
+func _on_Back_pressed() -> void:
 	_leave_lobby()
 
 
-func _leave_lobby():
+func _leave_lobby() -> void:
 	SignalingClient.disconnect_all_peers()
 	lobby_id = -1
 	emit_signal("transition_back")
@@ -80,10 +74,14 @@ func _leave_lobby():
 		SignalingClient.leave_lobby()
 
 
-func _on_Start_pressed():
+func _on_Start_pressed() -> void:
 	rpc("start_game")
 
 
-remotesync func start_game():
+remotesync func start_game() -> void:
 # warning-ignore:return_value_discarded
 	get_tree().change_scene_to(Level)
+
+
+func _on_Options_pressed():
+	emit_signal("transition", "MultiplayerSettings")

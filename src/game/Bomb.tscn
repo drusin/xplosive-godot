@@ -1,47 +1,47 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/game/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://assets/textures.png" type="Texture" id=2]
+[ext_resource path="res://assets/1bitxplosive.png" type="Texture" id=2]
 [ext_resource path="res://src/game/FireController.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
-region = Rect2( 640, 0, 8, 8 )
+region = Rect2( 280, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
-region = Rect2( 648, 0, 8, 8 )
+region = Rect2( 288, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 656, 0, 8, 8 )
+region = Rect2( 296, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
-region = Rect2( 664, 0, 8, 8 )
+region = Rect2( 304, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
-region = Rect2( 672, 0, 8, 8 )
+region = Rect2( 312, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
-region = Rect2( 680, 0, 8, 8 )
+region = Rect2( 320, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
-region = Rect2( 688, 0, 8, 8 )
+region = Rect2( 328, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
-region = Rect2( 696, 0, 8, 8 )
+region = Rect2( 336, 0, 8, 8 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": false,
+"loop": true,
 "name": "default",
-"speed": 3.0
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=10]
@@ -58,7 +58,6 @@ FireController = ExtResource( 3 )
 frames = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 10 )
 
 [node name="PlayerDetector" type="Area2D" parent="."]

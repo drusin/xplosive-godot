@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://assets/textures.png" type="Texture" id=1]
+[ext_resource path="res://assets/1bitxplosive.png" type="Texture" id=1]
 [ext_resource path="res://src/game/Fire.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
@@ -60,7 +60,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 704, 0, 8, 8 ) ]
+"values": [ Rect2( 224, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -87,7 +87,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 728, 0, 8, 8 ) ]
+"values": [ Rect2( 272, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -114,7 +114,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 712, 0, 8, 8 ) ]
+"values": [ Rect2( 232, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -141,7 +141,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 736, 0, 8, 8 ) ]
+"values": [ Rect2( 248, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -168,7 +168,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 744, 0, 8, 8 ) ]
+"values": [ Rect2( 256, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -195,7 +195,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 752, 0, 8, 8 ) ]
+"values": [ Rect2( 264, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -222,7 +222,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 720, 0, 8, 8 ) ]
+"values": [ Rect2( 240, 0, 8, 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:offset")
@@ -249,7 +249,7 @@ script = ExtResource( 2 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = Vector2( 0, 0 )
+parameters/blend_position = Vector2( 0, -0.0862069 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/center = SubResource( 10 )
@@ -263,9 +263,10 @@ anims/vertical = SubResource( 16 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 704, 0, 8, 8 )
+region_rect = Rect2( 224, 0, 8, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 17 )
 
 [node name="Timer" type="Timer" parent="."]

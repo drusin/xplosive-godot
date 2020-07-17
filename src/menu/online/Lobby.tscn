@@ -36,60 +36,95 @@ margin_right = 62.0
 margin_bottom = 7.0
 text = "lobby name"
 
-[node name="LobbyNameEdit" type="LineEdit" parent="VBoxContainer/MarginContainer"]
-visible = false
-margin_right = 59.0
-margin_bottom = 9.0
-size_flags_horizontal = 0
-custom_constants/minimum_spaces = 19
-
-[node name="Player1" parent="VBoxContainer" instance=ExtResource( 5 )]
-anchor_right = 0.0
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 margin_top = 10.0
 margin_right = 62.0
-margin_bottom = 18.0
+margin_bottom = 11.0
 
-[node name="Player2" parent="VBoxContainer" instance=ExtResource( 5 )]
-visible = false
-anchor_right = 0.0
-margin_top = 22.0
+[node name="Players" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 12.0
 margin_right = 62.0
-margin_bottom = 31.0
+margin_bottom = 46.0
+custom_constants/separation = 2
 
-[node name="Player3" parent="VBoxContainer" instance=ExtResource( 5 )]
-visible = false
+[node name="Player1" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 32.0
 margin_right = 62.0
-margin_bottom = 41.0
+margin_bottom = 7.0
 
-[node name="Player4" parent="VBoxContainer" instance=ExtResource( 5 )]
-visible = false
+[node name="Player2" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 42.0
+margin_top = 9.0
 margin_right = 62.0
-margin_bottom = 51.0
+margin_bottom = 16.0
+
+[node name="Number" parent="VBoxContainer/Players/Player2" index="0"]
+margin_top = 0.0
+margin_bottom = 7.0
+text = "2"
+
+[node name="Name" parent="VBoxContainer/Players/Player2" index="1"]
+margin_top = 0.0
+margin_right = 62.0
+margin_bottom = 7.0
+
+[node name="Player3" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
+anchor_right = 0.0
+margin_top = 18.0
+margin_right = 62.0
+margin_bottom = 25.0
+
+[node name="Number" parent="VBoxContainer/Players/Player3" index="0"]
+margin_top = 0.0
+margin_bottom = 7.0
+text = "3"
+
+[node name="Name" parent="VBoxContainer/Players/Player3" index="1"]
+margin_top = 0.0
+margin_right = 62.0
+margin_bottom = 7.0
+
+[node name="Player4" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
+anchor_right = 0.0
+margin_top = 27.0
+margin_right = 62.0
+margin_bottom = 34.0
+
+[node name="Number" parent="VBoxContainer/Players/Player4" index="0"]
+margin_top = 0.0
+margin_bottom = 7.0
+text = "4"
+
+[node name="Name" parent="VBoxContainer/Players/Player4" index="1"]
+margin_top = 0.0
+margin_right = 62.0
+margin_bottom = 7.0
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 47.0
+margin_right = 62.0
+margin_bottom = 48.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 19.0
+margin_top = 49.0
 margin_right = 62.0
-margin_bottom = 30.0
+margin_bottom = 60.0
 custom_constants/margin_top = 2
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
 margin_top = 2.0
-margin_right = 33.0
+margin_right = 60.0
 margin_bottom = 11.0
 size_flags_horizontal = 0
 
 [node name="Start" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
-visible = false
 margin_right = 23.0
 margin_bottom = 9.0
 text = "Start"
 
 [node name="Back" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
-margin_right = 19.0
+margin_left = 27.0
+margin_right = 46.0
 margin_bottom = 9.0
 text = "Back"
 __meta__ = {
@@ -97,9 +132,16 @@ __meta__ = {
 }
 
 [node name="Options" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
-margin_left = 23.0
-margin_right = 33.0
+margin_left = 50.0
+margin_right = 60.0
 margin_bottom = 9.0
 icon = ExtResource( 4 )
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Options" to="." method="_on_Options_pressed"]
+
+[editable path="VBoxContainer/Players/Player2"]
+
+[editable path="VBoxContainer/Players/Player3"]
+
+[editable path="VBoxContainer/Players/Player4"]

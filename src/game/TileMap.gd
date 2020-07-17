@@ -2,8 +2,8 @@ extends TileMap
 
 enum { 
 	EMPTY = -1
-	DESTROYABLE = 0,
-	BREAKING = 2,
+	DESTROYABLE = 4,
+	BREAKING = 5,
 }
 
 

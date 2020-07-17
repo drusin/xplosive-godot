@@ -46,7 +46,7 @@ _global_script_class_icons={
 
 config/name="Xplosive-godot"
 run/main_scene="res://src/menu/Menu.tscn"
-boot_splash/bg_color=Color( 0.00392157, 0.00392157, 0.0470588, 1 )
+boot_splash/bg_color=Color( 0.180392, 0.188235, 0.215686, 1 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -99,10 +99,10 @@ texture={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
-2d_physics/layer_3="BombBlue"
-2d_physics/layer_4="BombGreen"
-2d_physics/layer_5="BombPurple"
-2d_physics/layer_6="BombRed"
+2d_physics/layer_3="BombPlayer1"
+2d_physics/layer_4="BombPlayer2"
+2d_physics/layer_5="BombPlayer3"
+2d_physics/layer_6="BombPlayer4"
 2d_physics/layer_7="Bomb"
 2d_physics/layer_8="Fire"
 
@@ -111,5 +111,5 @@ texture={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.00392157, 0.00392157, 0.054902, 1 )
+environment/default_clear_color=Color( 0.180392, 0.188235, 0.215686, 1 )
 environment/default_environment="res://default_env.tres"

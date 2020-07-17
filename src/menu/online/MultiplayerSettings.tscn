@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/menu/online/MultiplayerSettings.gd" type="Script" id=2]
+
+[node name="MultiplayerSettings" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 64.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+margin_right = 60.0
+margin_bottom = 9.0
+
+[node name="Save" type="Button" parent="GridContainer/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 9.0
+size_flags_horizontal = 0
+text = "Save"
+
+[node name="Cancel" type="Button" parent="GridContainer/HBoxContainer"]
+margin_left = 24.0
+margin_right = 51.0
+margin_bottom = 9.0
+text = "Cancel"
+
+[node name="Control" type="Control" parent="GridContainer"]
+margin_top = 13.0
+margin_right = 60.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/Control"]
+margin_right = 60.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyContainer" type="VBoxContainer" parent="GridContainer/Control/ScrollContainer"]
+margin_right = 56.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 1
+
+[node name="Label" type="Label" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
+margin_right = 56.0
+margin_bottom = 7.0
+text = "Player name:"
+
+[node name="PlayerName" type="LineEdit" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 17.0
+
+[node name="HostSettings" type="VBoxContainer" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
+margin_top = 18.0
+margin_right = 56.0
+margin_bottom = 53.0
+custom_constants/separation = 1
+
+[node name="Label2" type="Label" parent="GridContainer/Control/ScrollContainer/LobbyContainer/HostSettings"]
+margin_right = 56.0
+margin_bottom = 7.0
+text = "Lobby name:"
+
+[node name="LobbyName" type="LineEdit" parent="GridContainer/Control/ScrollContainer/LobbyContainer/HostSettings"]
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 17.0
+
+[node name="Label3" type="Label" parent="GridContainer/Control/ScrollContainer/LobbyContainer/HostSettings"]
+margin_top = 18.0
+margin_right = 56.0
+margin_bottom = 25.0
+text = "Password:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LobbyPassword" type="LineEdit" parent="GridContainer/Control/ScrollContainer/LobbyContainer/HostSettings"]
+margin_top = 26.0
+margin_right = 56.0
+margin_bottom = 35.0
+secret = true
+[connection signal="pressed" from="GridContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="GridContainer/HBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]
