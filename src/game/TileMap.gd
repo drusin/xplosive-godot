@@ -7,22 +7,30 @@ enum {
 }
 
 
-func explode(position, timeout):
-	var world_position = world_to_map(position)
-	if get_cellv(world_position) == DESTROYABLE:
-		set_cellv(world_position, BREAKING)
-		_create_destruction_timer(world_position, timeout)
+func explode(world_position):
+	var map_position = world_to_map(world_position)
+	if get_cellv(map_position) == DESTROYABLE:
+		set_cellv(map_position, BREAKING)
 
 
-func _create_destruction_timer(world_position, timeout):
-	var timer = Timer.new()
-	timer.wait_time = timeout
-	timer.one_shot = true
-	timer.connect("timeout", self, "_on_remove_tile_timeout", [world_position, timer])
-	add_child(timer)
-	timer.start()
+func burning_finished(world_position):
+	var map_position = world_to_map(world_position)
+	if get_cellv(map_position) == BREAKING:
+		set_cellv(map_position, EMPTY)
 
 
-func _on_remove_tile_timeout(world_position, timer):
-	set_cellv(world_position, EMPTY)
-	timer.queue_free()
+func create_sync_data() -> Array:
+	var cells := []
+	for x in range(8):
+		for y in range(8):
+			cells.append({
+				x = x,
+				y = y,
+				cell_id = get_cell(x, y)
+			})
+	return cells
+
+
+puppet func synchronize(cells: Array) -> void:
+	for cell in cells:
+		set_cell(cell.x, cell.y, cell.cell_id)

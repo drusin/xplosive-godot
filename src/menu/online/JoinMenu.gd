@@ -2,7 +2,6 @@ extends AbstractMenu
 
 const ICON_WIDTH := 5
 const ICON_HEIGHT := 7
-const ICON_PATH_TEMPLATE := "res://assets/lobby-icons/%s_%d.png"
 var ICONS := load("res://assets/lobby-icons/icons.png")
 
 onready var back_button = $GridContainer/Back
@@ -13,8 +12,8 @@ func _ready() -> void:
 	fullscreen = true
 # warning-ignore:return_value_discarded
 	SignalingClient.connect("lobby_list_recieved", self, "update_lobbies")
-	
-	
+
+
 func focus_default() -> void:
 	back_button.grab_focus()
 

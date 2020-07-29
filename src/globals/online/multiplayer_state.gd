@@ -2,7 +2,11 @@ extends Node
 
 signal lobby_updated()
 
-var online := false
+var online := false setget _set_online
+func _set_online(new_var: bool) -> void:
+	push_error("Don't set 'MultiplayerState.online' from outside!")
+	online = new_var
+
 
 var lobby := {
 	id = 1234567,
@@ -28,7 +32,19 @@ var players := {
 func _ready() -> void:
 # warning-ignore:return_value_discarded
 	SignalingClient.connect("lobby_update_recieved", self, "update_lobby")
-	
+# warning-ignore:return_value_discarded
+	SignalingClient.connect("connection_established", self, "_on_signaling_established")
+# warning-ignore:return_value_discarded
+	SignalingClient.connect("connection_closed", self, "_on_signaling_closed")
+
+
+func _on_signaling_established() -> void:
+	online = true
+
+
+func _on_signaling_closed() -> void:
+	online = false
+
 
 func update_lobby(update: Dictionary) -> void:
 	lobby.id = update.id

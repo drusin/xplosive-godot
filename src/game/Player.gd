@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 const LAYERS := {
 	1: 2,
@@ -19,6 +20,7 @@ onready var animation_tree := $AnimationTree
 onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 onready var bomb_detector := $BombDetector
 onready var controller := $Controller
+onready var tween := $Tween
 onready var current_bombs := max_bombs
 
 
@@ -48,6 +50,30 @@ func _death_anim_finished() -> void:
 	queue_free()
 
 
-func explode(_position, _timeout) -> void:
+func explode(_position) -> void:
+	if !MultiplayerState.online:
+		die()
+	elif get_tree().is_network_server():
+		rpc("die")
+
+
+remotesync func die() -> void:
 	animation_state.travel("Dead")
 	dead = true
+
+
+func create_sync_data() -> Dictionary:
+	return {
+		position = position,
+		current_bombs = current_bombs,
+		max_bombs = max_bombs,
+		power = power
+	}
+
+
+puppet func synchronize(sync_data: Dictionary) -> void:
+	tween.interpolate_property(self, "position", null, sync_data.position, Constants.INTERPOLATION_DURATION)
+	tween.start()
+	current_bombs = sync_data.current_bombs
+	max_bombs = sync_data.max_bombs
+	power = sync_data.power

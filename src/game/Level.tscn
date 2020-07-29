@@ -1,18 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/game/BombController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/game/TileMap.gd" type="Script" id=3]
 [ext_resource path="res://src/game/Level.gd" type="Script" id=4]
+[ext_resource path="res://src/game/Syncer.gd" type="Script" id=5]
 [ext_resource path="res://assets/1bitxplosive.png" type="Texture" id=6]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 
 [sub_resource type="TileSet" id=4]
@@ -26,14 +27,14 @@ points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 5 )
+3/shape = SubResource( 1 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -47,14 +48,14 @@ points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 6 )
+4/shape = SubResource( 2 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 6 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -68,14 +69,14 @@ points = PoolVector2Array( 8, 8, 0, 8, 0, 0, 8, 0 )
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 0 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape = SubResource( 7 )
+5/shape = SubResource( 3 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 7 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
@@ -89,21 +90,21 @@ players_path = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Blue" parent="Players" instance=ExtResource( 2 )]
+[node name="1" parent="Players" instance=ExtResource( 2 )]
 position = Vector2( 4, 4 )
 collision_mask = 61
 
-[node name="Green" parent="Players" instance=ExtResource( 2 )]
+[node name="2" parent="Players" instance=ExtResource( 2 )]
 position = Vector2( 60, 4 )
 collision_mask = 13
 player_number = 2
 
-[node name="Purple" parent="Players" instance=ExtResource( 2 )]
+[node name="3" parent="Players" instance=ExtResource( 2 )]
 position = Vector2( 4, 60 )
 collision_mask = 21
 player_number = 3
 
-[node name="Red" parent="Players" instance=ExtResource( 2 )]
+[node name="4" parent="Players" instance=ExtResource( 2 )]
 position = Vector2( 60, 60 )
 collision_mask = 37
 player_number = 4
@@ -130,3 +131,9 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -1, 3, 0, -65536, 3, 0, -65535, 3, 0, -65534, 3, 0, -65533, 3, 0, -65532, 3, 0, -65531, 3, 0, -65530, 3, 0, -65529, 3, 0, -65528, 3, 0, 65535, 3, 0, 2, 4, 0, 3, 3, 0, 4, 3, 0, 5, 4, 0, 8, 3, 0, 131071, 3, 0, 65537, 3, 0, 65538, 4, 0, 65541, 4, 0, 65542, 3, 0, 65544, 3, 0, 196607, 3, 0, 131072, 4, 0, 131073, 4, 0, 131075, 4, 0, 131076, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 3, 0, 262143, 3, 0, 196608, 3, 0, 196610, 4, 0, 196611, 3, 0, 196612, 3, 0, 196613, 4, 0, 196615, 3, 0, 196616, 3, 0, 327679, 3, 0, 262144, 3, 0, 262146, 4, 0, 262147, 3, 0, 262148, 3, 0, 262149, 4, 0, 262151, 3, 0, 262152, 3, 0, 393215, 3, 0, 327680, 4, 0, 327681, 4, 0, 327683, 4, 0, 327684, 4, 0, 327686, 4, 0, 327687, 4, 0, 327688, 3, 0, 458751, 3, 0, 393217, 3, 0, 393218, 4, 0, 393221, 4, 0, 393222, 3, 0, 393224, 3, 0, 524287, 3, 0, 458754, 4, 0, 458755, 3, 0, 458756, 3, 0, 458757, 4, 0, 458760, 3, 0, 589823, 3, 0, 524288, 3, 0, 524289, 3, 0, 524290, 3, 0, 524291, 3, 0, 524292, 3, 0, 524293, 3, 0, 524294, 3, 0, 524295, 3, 0, 524296, 3, 0 )
 script = ExtResource( 3 )
+
+[node name="Syncer" type="Node" parent="."]
+script = ExtResource( 5 )
+players_path = NodePath("../Players")
+tile_map_path = NodePath("../TileMap")
+bomb_controller_path = NodePath("../BombController")

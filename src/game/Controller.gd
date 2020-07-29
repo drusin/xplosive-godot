@@ -2,12 +2,12 @@ extends Node
 
 signal bomb_pressed(player)
 
-var movement = Vector2.ZERO
+var movement := Vector2.ZERO
 
-onready var player = get_parent()
+onready var player := get_parent()
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if !multiplayer.has_network_peer() or is_network_master():
 		movement.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 		movement.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -22,9 +22,9 @@ func _process(_delta):
 				rpc("emit_bomb_pressed")
 
 
-puppet func set_movement(mov):
+puppet func set_movement(mov: Vector2) -> void:
 	movement = mov
 
 
-puppet func emit_bomb_pressed():
+puppet func emit_bomb_pressed() -> void:
 	emit_signal("bomb_pressed", player)

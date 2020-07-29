@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "EditorTheme",
 "language": "GDScript",
 "path": "res://addons/aseprite_importer/classes/EditorTheme.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/game/Player.gd"
 } ]
 _global_script_class_icons={
 "AbstractMenu": "",
 "AsepriteImportData": "",
 "AsepriteImporter": "",
 "Constants": "",
-"EditorTheme": ""
+"EditorTheme": "",
+"Player": ""
 }
 
 [application]

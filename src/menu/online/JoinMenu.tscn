@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/menu/online/JoinMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/lobby-icons/no_pw_2.png" type="Texture" id=3]
-[ext_resource path="res://assets/lobby-icons/no_pw_4.png" type="Texture" id=4]
-[ext_resource path="res://assets/lobby-icons/pw_3.png" type="Texture" id=5]
-[ext_resource path="res://assets/lobby-icons/pw_1.png" type="Texture" id=6]
 
 [node name="JoinMenu" type="MarginContainer"]
 anchor_right = 1.0
@@ -43,61 +39,56 @@ margin_right = 60.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+follow_focus = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LobbyContainer" type="VBoxContainer" parent="GridContainer/Control/ScrollContainer"]
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 1
 
 [node name="Button" type="Button" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 9.0
 text = "Lobby"
-icon = ExtResource( 3 )
 align = 0
 
 [node name="Button2" type="Button" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
 margin_top = 10.0
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 19.0
 text = "Xplosive!"
-icon = ExtResource( 6 )
 align = 0
 
 [node name="Button3" type="Button" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
 margin_top = 20.0
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 29.0
 text = "Gods play here"
-icon = ExtResource( 4 )
 align = 0
 
 [node name="Button4" type="Button" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
 margin_top = 30.0
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 39.0
 text = "Blibb"
-icon = ExtResource( 3 )
 align = 0
 
 [node name="Button5" type="Button" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
 margin_top = 40.0
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 49.0
 text = "Blubb"
-icon = ExtResource( 5 )
 align = 0
 
 [node name="Button6" type="Button" parent="GridContainer/Control/ScrollContainer/LobbyContainer"]
 margin_top = 50.0
-margin_right = 64.0
+margin_right = 59.0
 margin_bottom = 59.0
 text = "Lobby"
-icon = ExtResource( 3 )
 align = 0
 [connection signal="pressed" from="GridContainer/Back" to="." method="_on_Back_pressed"]

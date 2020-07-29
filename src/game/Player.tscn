@@ -278,3 +278,5 @@ shape = SubResource( 20 )
 
 [node name="Controller" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]

@@ -15,26 +15,27 @@ func focus_default() -> void:
 
 
 func on_show() -> void:
-	host_settings.visible = get_tree().is_network_server()
+	host_settings.visible = !MultiplayerState.online or get_tree().is_network_server()
 	lobby_name_edit.text = Settings.values.lobby_name
 	lobby_password_edit.text = Settings.values.lobby_password
 	player_name_edit.text = Settings.values.alias
 
 
 func _on_Save_pressed() -> void:
-	Settings.values.alias = player_name_edit.text	
-	SignalingClient.send_alias(player_name_edit.text)
-	
-	if get_tree().is_network_server():
-		Settings.values.lobby_name = lobby_name_edit.text
-		Settings.values.lobby_password = lobby_password_edit.text
-		SignalingClient.edit_lobby(
-				MultiplayerState.lobby.id,
-				lobby_name_edit.text,
-				lobby_password_edit.text,
-				MultiplayerState.lobby.max_players)
-				
+	Settings.values.alias = player_name_edit.text
+	Settings.values.lobby_name = lobby_name_edit.text
+	Settings.values.lobby_password = lobby_password_edit.text
 	Settings.save_settings()
+	
+	if MultiplayerState.online:
+		SignalingClient.send_alias(player_name_edit.text)
+		if get_tree().is_network_server():
+			SignalingClient.edit_lobby(
+					MultiplayerState.lobby.id,
+					lobby_name_edit.text,
+					lobby_password_edit.text,
+					MultiplayerState.lobby.max_players)
+				
 	emit_signal("transition_back")
 
 

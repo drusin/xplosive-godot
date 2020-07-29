@@ -17,5 +17,4 @@ func _on_Join_pressed():
 
 func _on_Back_pressed():
 	SignalingClient.disconnect_from_host()
-	MultiplayerState.online = false
 	emit_signal("transition_back")

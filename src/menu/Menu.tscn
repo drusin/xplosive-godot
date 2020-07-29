@@ -22,7 +22,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
 anchor_right = 1.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
@@ -61,6 +61,6 @@ visible = false
 [node name="TransitionController" type="Node" parent="."]
 script = ExtResource( 6 )
 main_menu_path = NodePath("../Menus/MainMenu")
-logo_path = NodePath("../TextureRect")
+logo_path = NodePath("../Logo")
 
 [node name="Tween" type="Tween" parent="TransitionController"]

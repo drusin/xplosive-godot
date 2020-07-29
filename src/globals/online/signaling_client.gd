@@ -1,5 +1,8 @@
 extends Node
 
+signal connection_established()
+signal connection_closed()
+
 signal lobby_list_recieved(lobbies)
 signal lobby_update_recieved(lobby)
 signal lobby_deleted(lobby_id)
@@ -37,7 +40,6 @@ var game: String
 
 var _client := WebSocketClient.new()
 var _rtc_multiplayer := WebRTCMultiplayer.new()
-var _signaling_connected := false
 
 
 func _ready() -> void:
@@ -56,10 +58,6 @@ func _process(_delta) -> void:
 
 func init(game_name: String) -> void:
 	game = game_name
-
-
-func is_signaling_connected() -> bool:
-	return _signaling_connected
 
 
 func connect_to(url: String, alias: String) -> void:
@@ -129,7 +127,7 @@ func _on_connection_established(_protocol, alias: String) -> void:
 	_client.get_peer(1).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
 	_send_game()
 	send_alias(alias)
-	_signaling_connected = true
+	emit_signal("connection_established")
 
 
 func _send_game() -> void:
@@ -137,8 +135,8 @@ func _send_game() -> void:
 	
 
 func _on_connection_closed(_was_clean_close) -> void:
-	_signaling_connected = false
 	_client.disconnect("connection_established", self, "_on_connection_established")
+	emit_signal("connection_closed")
 
 
 func _on_data_received() -> void:

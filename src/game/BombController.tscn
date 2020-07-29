@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/game/BombController.gd" type="Script" id=1]
 [ext_resource path="res://src/game/Bomb.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/game/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/game/Fire.tscn" type="PackedScene" id=4]
 
 [node name="BombController" type="Node2D"]
 script = ExtResource( 1 )
 Player = ExtResource( 3 )
 Bomb = ExtResource( 2 )
+Fire = ExtResource( 4 )
+
+[node name="Bombs" type="Node2D" parent="."]
+
+[node name="Fires" type="Node2D" parent="."]
+
+[node name="FireControllers" type="Node2D" parent="."]
