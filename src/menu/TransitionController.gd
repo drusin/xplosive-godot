@@ -9,7 +9,9 @@ var history := []
 
 onready var logo := get_node(logo_path)
 onready var current := get_node(main_menu_path)
-onready var tween := $Tween
+onready var tween = $Tween
+# make this settable for untit tests
+onready var _input_disabler = get_tree().get_root()
 
 
 func transition(to: Node) -> void:
@@ -29,61 +31,33 @@ func transition_back() -> void:
 
 
 func _transition_left(to: Node) -> void:
-	var initial_left = current.rect_position
-	tween.interpolate_property(current, "rect_position", null, Vector2(-64, initial_left.y), DURATION)
-	tween.interpolate_callback(self, DURATION, "_after_transition", current)
-	
-	to.on_show()
-	to.visible = true
-	to.rect_position.x = 64
-	var initial_right = to.rect_position
-	tween.interpolate_property(to, "rect_position", null, Vector2(0, initial_right.y), DURATION)
-	
-	if !current.fullscreen and to.fullscreen:
-		_transition_logo_to_left()
-	elif current.fullscreen and !to.fullscreen:
-		_transition_logo_from_right()
-		
-	tween.start()
-
-
-func _transition_logo_to_left() -> void:
-	var initial_pos = logo.rect_position
-	tween.interpolate_property(logo, "rect_position", null, Vector2(-64, initial_pos.y), DURATION)
-
-
-func _transition_logo_from_right() -> void:
-	var initial_pos = logo.rect_position
-	tween.interpolate_property(logo, "rect_position", null, Vector2(0, initial_pos.y), DURATION)
+	_transition_internal(to, -64, 64)
 
 
 func _transition_right(to: Node) -> void:
-	to.on_show()
-	to.visible = true
-	to.rect_position.x = -64
-	var initial_left = to.rect_position
-	tween.interpolate_property(to, "rect_position", null, Vector2(0, initial_left.y), DURATION)
-	
-	var initial_right = current.rect_position
-	tween.interpolate_property(current, "rect_position", null, Vector2(64, initial_right.y), DURATION)
+	_transition_internal(to, 64, -64)
+
+
+func _transition_internal(to: Node, current_end_x: float, to_start_x: float) -> void:
+	var current_y = current.rect_position.y
+	var to_y = to.rect_position.y
+	tween.interpolate_property(current, "rect_position", Vector2(0, current_y), Vector2(current_end_x, current_y), DURATION)
 	tween.interpolate_callback(self, DURATION, "_after_transition", current)
-	
+	tween.interpolate_property(to, "rect_position", Vector2(to_start_x, to_y), Vector2(0, to_y), DURATION)
+	to.visible = true
+	to.on_show()
+
 	if !current.fullscreen and to.fullscreen:
-		_transition_logo_to_right()
-	elif current.fullscreen and !to.fullscreen:
-		_transition_logo_from_left()
+		_transition_logo(0, current_end_x)
+	if current.fullscreen and !to.fullscreen:
+		_transition_logo(to_start_x, 0)
 	
 	tween.start()
 
 
-func _transition_logo_to_right() -> void:
-	var initial_pos = logo.rect_position
-	tween.interpolate_property(logo, "rect_position", null, Vector2(64, initial_pos.y), DURATION)
-
-
-func _transition_logo_from_left() -> void:
-	var initial_pos = logo.rect_position
-	tween.interpolate_property(logo, "rect_position", null, Vector2(0, initial_pos.y), DURATION)
+func _transition_logo(from_x: float, to_x: float) -> void:
+	var initial_y = logo.rect_position.y
+	tween.interpolate_property(logo, "rect_position", Vector2(from_x, initial_y), Vector2(to_x, initial_y), DURATION)
 
 
 func _after_transition(old: Node) -> void:
@@ -94,8 +68,8 @@ func _after_transition(old: Node) -> void:
 
 
 func _disable_input() -> void:
-	get_tree().get_root().set_disable_input(true)
+	_input_disabler.set_disable_input(true)
 
 
 func _enable_input() -> void:
-	get_tree().get_root().set_disable_input(false)
+	_input_disabler.set_disable_input(false)

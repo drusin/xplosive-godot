@@ -38,6 +38,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/game/Player.gd"
+}, {
+"base": "Reference",
+"class": "WAT",
+"language": "GDScript",
+"path": "res://addons/WAT/namespace.gd"
+}, {
+"base": "",
+"class": "WATTest",
+"language": "GDScript",
+"path": "res://addons/WAT/core/test/test.gd"
 } ]
 _global_script_class_icons={
 "AbstractMenu": "",
@@ -45,8 +55,22 @@ _global_script_class_icons={
 "AsepriteImporter": "",
 "Constants": "",
 "EditorTheme": "",
-"Player": ""
+"Player": "",
+"WAT": "",
+"WATTest": ""
 }
+
+[WAT]
+
+Test_Directory="res://tests"
+Results_Directory="res://tests/results/WAT"
+Minimize_Window_When_Running_Tests=false
+TestStrategy={
+"repeat": 1,
+"strategy": "RunAll"
+}
+Tags=PoolStringArray(  )
+Display=8
 
 [application]
 
@@ -72,7 +96,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "aseprite_importer", "open-external-editor" )
+enabled=PoolStringArray( "WAT", "aseprite_importer", "gut", "open-external-editor" )
 
 [gdnative]
 
