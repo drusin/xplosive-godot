@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<testsuites failures="1" name="TestXML" tests="1" time="0.757">
-<testsuite failures="1" name="Transition Controller" tests="1" time="0.003">
-<testcase name=" small to small forward" time="0.003">
-<failure message="EXPECTED: method: interpolate_property was called with arguments: [[Control:1508], rect_position, (0, 0), (-64, 0), 0.5, 0, 2, 0] but GOT method: interpolate_property was not called at all"></failure>
-</testcase>
-</testsuite>
-</testsuites>

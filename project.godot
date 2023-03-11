@@ -38,16 +38,6 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/game/Player.gd"
-}, {
-"base": "Reference",
-"class": "WAT",
-"language": "GDScript",
-"path": "res://addons/WAT/namespace.gd"
-}, {
-"base": "",
-"class": "WATTest",
-"language": "GDScript",
-"path": "res://addons/WAT/core/test/test.gd"
 } ]
 _global_script_class_icons={
 "AbstractMenu": "",
@@ -55,9 +45,7 @@ _global_script_class_icons={
 "AsepriteImporter": "",
 "Constants": "",
 "EditorTheme": "",
-"Player": "",
-"WAT": "",
-"WATTest": ""
+"Player": ""
 }
 
 [WAT]
@@ -100,7 +88,7 @@ enabled=PoolStringArray( "WAT", "aseprite_importer", "gut", "open-external-edito
 
 [gdnative]
 
-singletons=[ "res://webrtc/webrtc.tres" ]
+singletons=[  ]
 
 [importer_defaults]
 
