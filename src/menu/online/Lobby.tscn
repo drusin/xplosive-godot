@@ -136,12 +136,11 @@ margin_left = 50.0
 margin_right = 60.0
 margin_bottom = 9.0
 icon = ExtResource( 4 )
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Options" to="." method="_on_Options_pressed"]
 
 [editable path="VBoxContainer/Players/Player2"]
-
 [editable path="VBoxContainer/Players/Player3"]
-
 [editable path="VBoxContainer/Players/Player4"]

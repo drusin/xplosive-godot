@@ -62,5 +62,3 @@ visible = false
 script = ExtResource( 6 )
 main_menu_path = NodePath("../Menus/MainMenu")
 logo_path = NodePath("../Logo")
-
-[node name="Tween" type="Tween" parent="TransitionController"]

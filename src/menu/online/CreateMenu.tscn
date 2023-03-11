@@ -10,9 +10,6 @@ theme = ExtResource( 1 )
 custom_constants/margin_top = 2
 custom_constants/margin_bottom = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_top = 2.0
@@ -64,5 +61,6 @@ margin_top = 51.0
 margin_right = 50.0
 margin_bottom = 60.0
 text = "Back"
+
 [connection signal="pressed" from="CenterContainer/GridContainer/Create" to="." method="_on_Create_pressed"]
 [connection signal="pressed" from="CenterContainer/GridContainer/Back" to="." method="_on_Back_pressed"]

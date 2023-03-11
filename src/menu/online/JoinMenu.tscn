@@ -11,9 +11,6 @@ custom_constants/margin_right = 2
 custom_constants/margin_top = 2
 custom_constants/margin_left = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GridContainer" type="VBoxContainer" parent="."]
 margin_left = 2.0
@@ -91,4 +88,5 @@ margin_right = 59.0
 margin_bottom = 59.0
 text = "Lobby"
 align = 0
+
 [connection signal="pressed" from="GridContainer/Back" to="." method="_on_Back_pressed"]

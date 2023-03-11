@@ -9,8 +9,7 @@ var history := []
 
 onready var logo := get_node(logo_path)
 onready var current := get_node(main_menu_path)
-onready var tween = $Tween
-# make this settable for untit tests
+
 onready var _input_disabler = get_tree().get_root()
 
 
@@ -39,25 +38,31 @@ func _transition_right(to: Node) -> void:
 
 
 func _transition_internal(to: Node, current_end_x: float, to_start_x: float) -> void:
+	to.rect_position.x = to_start_x
 	var current_y = current.rect_position.y
 	var to_y = to.rect_position.y
-	tween.interpolate_property(current, "rect_position", Vector2(0, current_y), Vector2(current_end_x, current_y), DURATION)
-	tween.interpolate_callback(self, DURATION, "_after_transition", current)
-	tween.interpolate_property(to, "rect_position", Vector2(to_start_x, to_y), Vector2(0, to_y), DURATION)
+	var tween := get_tree().create_tween()
+	# warning-ignore:return_value_discarded
+	tween.tween_property(current, "rect_position", Vector2(current_end_x, current_y), DURATION)
+	# warning-ignore:return_value_discarded
+	tween.parallel().tween_property(to, "rect_position", Vector2(0, to_y), DURATION)
 	to.visible = true
 	to.on_show()
 
 	if !current.fullscreen and to.fullscreen:
-		_transition_logo(0, current_end_x)
+		_transition_logo(0, current_end_x, tween)
 	if current.fullscreen and !to.fullscreen:
-		_transition_logo(to_start_x, 0)
+		_transition_logo(to_start_x, 0, tween)
 	
-	tween.start()
+	# warning-ignore:return_value_discarded
+	tween.tween_callback(self, "_after_transition", [current])
 
 
-func _transition_logo(from_x: float, to_x: float) -> void:
+func _transition_logo(from_x: float, to_x: float, tween: SceneTreeTween) -> void:
+	logo.rect_position.x = from_x
 	var initial_y = logo.rect_position.y
-	tween.interpolate_property(logo, "rect_position", Vector2(from_x, initial_y), Vector2(to_x, initial_y), DURATION)
+	# warning-ignore:return_value_discarded
+	tween.parallel().tween_property(logo, "rect_position", Vector2(to_x, initial_y), DURATION)
 
 
 func _after_transition(old: Node) -> void:
