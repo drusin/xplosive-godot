@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 class_name AsepriteImporter
 
@@ -16,7 +16,7 @@ enum Error{
 
 
 static func generate_animations(import_data : AsepriteImportData, selected_tags : Array,
-		animation_player : AnimationPlayer, sprite : Node, texture : Texture) -> int:
+		animation_player : AnimationPlayer, sprite : Node, texture : Texture2D) -> int:
 
 	if not(import_data and import_data.json_data):
 		return Error.MISSING_JSON_DATA
@@ -38,7 +38,7 @@ static func generate_animations(import_data : AsepriteImportData, selected_tags 
 	if not animation_player:
 		return Error.MISSING_ANIMATION_PLAYER
 
-	if not(sprite is Sprite or sprite is Sprite3D):
+	if not(sprite is Sprite2D or sprite is Sprite3D):
 		return Error.MISSING_SPRITE
 
 	if texture == null:
@@ -73,7 +73,7 @@ static func generate_animations(import_data : AsepriteImportData, selected_tags 
 			# If it doesn't, adds a new one
 			animation = Animation.new()
 			# warning-ignore:return_value_discarded
-			animation_player.add_animation(tag.name, animation)
+			animation_player.add_animation_library(tag.name, animation)
 
 		# Setup the animation tracks
 		for track_name in tracks:

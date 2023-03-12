@@ -1,7 +1,7 @@
 extends HBoxContainer
 
-onready var number_label := $Number
-onready var name_label := $Name
+@onready var number_label := $Number
+@onready var name_label := $Name
 
 
 func setup(player_number: int, player: Dictionary) -> void:

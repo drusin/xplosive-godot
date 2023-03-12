@@ -7,59 +7,59 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-custom_constants/margin_top = 2
-custom_constants/margin_bottom = 2
+custom_constants/offset_top = 2
+custom_constants/offset_bottom = 2
 script = ExtResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-margin_top = 2.0
-margin_right = 64.0
-margin_bottom = 62.0
+offset_top = 2.0
+offset_right = 64.0
+offset_bottom = 62.0
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-margin_left = 7.0
-margin_right = 57.0
-margin_bottom = 60.0
-custom_constants/vseparation = 2
+offset_left = 7.0
+offset_right = 57.0
+offset_bottom = 60.0
+custom_constants/v_separation = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NameLabel" type="Label" parent="CenterContainer/GridContainer"]
-margin_right = 50.0
-margin_bottom = 7.0
+offset_right = 50.0
+offset_bottom = 7.0
 text = "Lobby name:"
 
 [node name="NameEdit" type="LineEdit" parent="CenterContainer/GridContainer"]
-margin_top = 9.0
-margin_right = 50.0
-margin_bottom = 18.0
+offset_top = 9.0
+offset_right = 50.0
+offset_bottom = 18.0
 text = "Xplosive!"
 caret_blink = true
 
 [node name="PasswordLabel" type="Label" parent="CenterContainer/GridContainer"]
-margin_top = 20.0
-margin_right = 50.0
-margin_bottom = 27.0
+offset_top = 20.0
+offset_right = 50.0
+offset_bottom = 27.0
 text = "Password:"
 
 [node name="PasswordEdit" type="LineEdit" parent="CenterContainer/GridContainer"]
-margin_top = 29.0
-margin_right = 50.0
-margin_bottom = 38.0
+offset_top = 29.0
+offset_right = 50.0
+offset_bottom = 38.0
 secret = true
 caret_blink = true
 
 [node name="Create" type="Button" parent="CenterContainer/GridContainer"]
-margin_top = 40.0
-margin_right = 50.0
-margin_bottom = 49.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 49.0
 text = "Create lobby"
 
 [node name="Back" type="Button" parent="CenterContainer/GridContainer"]
-margin_top = 51.0
-margin_right = 50.0
-margin_bottom = 60.0
+offset_top = 51.0
+offset_right = 50.0
+offset_bottom = 60.0
 text = "Back"
 
 [connection signal="pressed" from="CenterContainer/GridContainer/Create" to="." method="_on_Create_pressed"]

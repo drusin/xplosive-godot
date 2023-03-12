@@ -1,3 +1,4 @@
+class_name SignalingClient
 extends Node
 
 signal connection_established()
@@ -38,21 +39,21 @@ const MESSAGES := {
 
 var game: String
 
-var _client := WebSocketClient.new()
-var _rtc_multiplayer := WebRTCMultiplayer.new()
+var _client := WebSocketPeer.new()
+var _rtc_multiplayer := WebRTCMultiplayerPeer.new()
 
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded
-	_client.connect("connection_closed", self, "_on_connection_closed")
+	_client.connect("connection_closed", Callable(self,"_on_connection_closed"))
 # warning-ignore:return_value_discarded
-	_client.connect("data_received", self, "_on_data_received")
+	_client.connect("data_received", Callable(self,"_on_data_received"))
 
 
 func _process(_delta) -> void:
 	_rtc_multiplayer.poll()
-	var status = _client.get_connection_status()
-	if status == WebSocketClient.CONNECTION_CONNECTING or status == WebSocketClient.CONNECTION_CONNECTED:
+	var status = _client.get_ready_state()
+	if status == WebSocketPeer.STATE_CONNECTING or status == WebSocketPeer.STATE_OPEN:
 		_client.poll()
 
 
@@ -62,7 +63,7 @@ func init(game_name: String) -> void:
 
 func connect_to(url: String, alias: String) -> void:
 # warning-ignore:return_value_discarded
-	_client.connect("connection_established", self, "_on_connection_established", [alias])
+	_client.connect("connection_established",Callable(self,"_on_connection_established").bind(alias))
 # warning-ignore:return_value_discarded
 	_client.connect_to_url(url)
 
@@ -79,9 +80,9 @@ func send_player_data(data: Dictionary) -> void:
 	_send_message(MESSAGES.SET_PLAYER_DATA, { data = data })
 
 
-func create_lobby(name: String, password: String, max_players: int, data := {}) -> void:
+func create_lobby(lobby_name: String, password: String, max_players: int, data := {}) -> void:
 	_send_message(MESSAGES.CREATE_LOBBY, {
-		name = name,
+		name = lobby_name,
 		password = password,
 		maxPlayers = max_players,
 		game = game,
@@ -89,10 +90,10 @@ func create_lobby(name: String, password: String, max_players: int, data := {}) 
 	})
 
 
-func edit_lobby(id: int, name: String, password: String, max_players: int, data := {}) -> void:
+func edit_lobby(id: int, lobby_name: String, password: String, max_players: int, data := {}) -> void:
 	_send_message(MESSAGES.EDIT_LOBBY, {
 		id = id,
-		name = name,
+		name = lobby_name,
 		password = password,
 		maxPlayers = max_players,
 		data = data
@@ -135,12 +136,12 @@ func _send_game() -> void:
 	
 
 func _on_connection_closed(_was_clean_close) -> void:
-	_client.disconnect("connection_established", self, "_on_connection_established")
+	_client.disconnect("connection_established",Callable(self,"_on_connection_established"))
 	emit_signal("connection_closed")
 
 
 func _on_data_received() -> void:
-	_parse_message(JSON.parse(
+	_parse_message(JSON.parse_string(
 			_client.get_peer(1).get_packet().get_string_from_utf8()).result)
 
 
@@ -192,7 +193,7 @@ func _parse_message(message: Dictionary) -> void:
 func _initialize_mp(id: int) -> void:
 # warning-ignore:return_value_discarded
 	_rtc_multiplayer.initialize(id, true)
-	get_tree().set_network_peer(_rtc_multiplayer)
+	get_tree().set_multiplayer_peer(_rtc_multiplayer)
 	print('My ID: ' + str(id))
 
 
@@ -203,13 +204,13 @@ func _add_peer(id: int) -> void:
 # warning-ignore:return_value_discarded
 	peer.initialize(PEER_CONFIG)
 # warning-ignore:return_value_discarded
-	peer.connect("session_description_created", self, "_on_session_description_created", [id])
+	peer.connect("session_description_created",Callable(self,"_on_session_description_created").bind(id))
 # warning-ignore:return_value_discarded
-	peer.connect("ice_candidate_created", self, "_on_ice_candidate_created", [id])
+	peer.connect("ice_candidate_created",Callable(self,"_on_ice_candidate_created").bind(id))
 # warning-ignore:return_value_discarded
 	_rtc_multiplayer.add_peer(peer, id)
 	print("Peer added: ", id)
-	if _rtc_multiplayer.get_unique_id() != NetworkedMultiplayerPeer.TARGET_PEER_SERVER:
+	if _rtc_multiplayer.get_unique_id() != MultiplayerPeer.TARGET_PEER_SERVER:
 		_rtc_multiplayer.get_peer(id).connection.create_offer()
 
 
@@ -256,11 +257,11 @@ func _add_candidate(id, mid_name, index_name, sdp_name) -> void:
 
 func _send_message(header: String, payload: = {}) -> void:
 # warning-ignore:return_value_discarded
-	_client.get_peer(1).put_packet(_create_msg(header, payload).to_utf8())
+	_client.get_peer(1).put_packet(SignalingClient._create_msg(header, payload).to_utf8_buffer())
 
 
 static func _create_msg(type: String, payload: = {}) -> String:
-	return JSON.print({
+	return JSON.stringify({
 		"type": type,
 		"payload": payload
 	})

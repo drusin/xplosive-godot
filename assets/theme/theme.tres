@@ -1,89 +1,89 @@
-[gd_resource type="Theme" load_steps=15 format=2]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://cxq025fsmiuu3"]
 
-[ext_resource path="res://assets/SmallFont.res" type="DynamicFont" id=1]
-[ext_resource path="res://assets/theme/button_normal.res" type="StyleBox" id=2]
-[ext_resource path="res://assets/theme/button_focus.res" type="StyleBox" id=3]
-[ext_resource path="res://assets/theme/button_pressed.res" type="StyleBox" id=4]
-[ext_resource path="res://assets/theme/line_edit_normal.tres" type="StyleBox" id=5]
-[ext_resource path="res://assets/theme/line_edit_focus.tres" type="StyleBox" id=6]
-[ext_resource path="res://assets/theme/grabber.tres" type="StyleBox" id=7]
-[ext_resource path="res://assets/theme/scroll.tres" type="StyleBox" id=8]
+[ext_resource type="FontFile" path="res://assets/SmallFont.res" id="1"]
+[ext_resource type="StyleBox" path="res://assets/theme/button_normal.res" id="2"]
+[ext_resource type="StyleBox" path="res://assets/theme/button_focus.res" id="3"]
+[ext_resource type="StyleBox" path="res://assets/theme/button_pressed.res" id="4"]
+[ext_resource type="StyleBox" path="res://assets/theme/line_edit_normal.tres" id="5"]
+[ext_resource type="StyleBox" path="res://assets/theme/line_edit_focus.tres" id="6"]
+[ext_resource type="StyleBox" path="res://assets/theme/grabber.tres" id="7"]
+[ext_resource type="StyleBox" path="res://assets/theme/scroll.tres" id="8"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id="2"]
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id="3"]
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id="4"]
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id="5"]
 draw_center = false
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.921569, 0.898039, 0.807843, 1 )
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.921569, 0.898039, 0.807843, 1)
 draw_center = false
 border_width_top = 1
-border_color = Color( 0.921569, 0.898039, 0.807843, 1 )
+border_color = Color(0.921569, 0.898039, 0.807843, 1)
 
 [resource]
-default_font = ExtResource( 1 )
-Button/colors/font_color = Color( 0.921569, 0.898039, 0.807843, 1 )
-Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
-Button/colors/font_color_hover = Color( 0.921569, 0.898039, 0.807843, 1 )
-Button/colors/font_color_pressed = Color( 0.921569, 0.898039, 0.807843, 1 )
+default_font = ExtResource("1")
+Button/colors/font_color = Color(0.921569, 0.898039, 0.807843, 1)
+Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_color_hover = Color(0.921569, 0.898039, 0.807843, 1)
+Button/colors/font_color_pressed = Color(0.921569, 0.898039, 0.807843, 1)
 Button/constants/hseparation = 0
-Button/fonts/font = ExtResource( 1 )
+Button/fonts/font = ExtResource("1")
 Button/styles/disabled = null
-Button/styles/focus = ExtResource( 3 )
-Button/styles/hover = ExtResource( 3 )
-Button/styles/normal = ExtResource( 2 )
-Button/styles/pressed = ExtResource( 4 )
+Button/styles/focus = ExtResource("3")
+Button/styles/hover = ExtResource("3")
+Button/styles/normal = ExtResource("2")
+Button/styles/pressed = ExtResource("4")
 GridContainer/constants/hseparation = 0
 GridContainer/constants/vseparation = 0
 HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = SubResource( 1 )
-HScrollBar/styles/grabber_highlight = SubResource( 2 )
-HScrollBar/styles/grabber_pressed = SubResource( 3 )
-HScrollBar/styles/scroll = SubResource( 4 )
-HScrollBar/styles/scroll_focus = SubResource( 5 )
+HScrollBar/styles/grabber = SubResource("1")
+HScrollBar/styles/grabber_highlight = SubResource("2")
+HScrollBar/styles/grabber_pressed = SubResource("3")
+HScrollBar/styles/scroll = SubResource("4")
+HScrollBar/styles/scroll_focus = SubResource("5")
 HSeparator/constants/separation = 1
-HSeparator/styles/separator = SubResource( 6 )
-Label/colors/font_color = Color( 0.921569, 0.898039, 0.807843, 1 )
-Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
-Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+HSeparator/styles/separator = SubResource("6")
+Label/colors/font_color = Color(0.921569, 0.898039, 0.807843, 1)
+Label/colors/font_color_shadow = Color(0, 0, 0, 0)
+Label/colors/font_outline_modulate = Color(1, 1, 1, 1)
 Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
-Label/fonts/font = ExtResource( 1 )
+Label/fonts/font = ExtResource("1")
 Label/styles/normal = null
-LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
-LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
-LineEdit/colors/cursor_color = Color( 0.921569, 0.898039, 0.807843, 1 )
-LineEdit/colors/font_color = Color( 0.921569, 0.898039, 0.807843, 1 )
-LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
-LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
-LineEdit/colors/selection_color = Color( 0.54902, 0.541176, 0.509804, 1 )
+LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/cursor_color = Color(0.921569, 0.898039, 0.807843, 1)
+LineEdit/colors/font_color = Color(0.921569, 0.898039, 0.807843, 1)
+LineEdit/colors/font_color_selected = Color(0, 0, 0, 1)
+LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/selection_color = Color(0.54902, 0.541176, 0.509804, 1)
 LineEdit/constants/minimum_spaces = 12
-LineEdit/fonts/font = ExtResource( 1 )
+LineEdit/fonts/font = ExtResource("1")
 LineEdit/icons/clear = null
-LineEdit/styles/focus = ExtResource( 6 )
-LineEdit/styles/normal = ExtResource( 5 )
+LineEdit/styles/focus = ExtResource("6")
+LineEdit/styles/normal = ExtResource("5")
 LineEdit/styles/read_only = null
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = ExtResource( 7 )
-VScrollBar/styles/grabber_highlight = ExtResource( 7 )
-VScrollBar/styles/grabber_pressed = ExtResource( 7 )
-VScrollBar/styles/scroll = ExtResource( 8 )
-VScrollBar/styles/scroll_focus = ExtResource( 8 )
+VScrollBar/styles/grabber = ExtResource("7")
+VScrollBar/styles/grabber_highlight = ExtResource("7")
+VScrollBar/styles/grabber_pressed = ExtResource("7")
+VScrollBar/styles/scroll = ExtResource("8")
+VScrollBar/styles/scroll_focus = ExtResource("8")

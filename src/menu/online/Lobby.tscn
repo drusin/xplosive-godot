@@ -3,16 +3,16 @@
 [ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/game/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/menu/online/Lobby.gd" type="Script" id=3]
-[ext_resource path="res://assets/lobby-icons/options.png" type="Texture" id=4]
+[ext_resource path="res://assets/lobby-icons/options.png" type="Texture2D" id=4]
 [ext_resource path="res://src/menu/online/Player.tscn" type="PackedScene" id=5]
 
 [node name="Lobby" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-custom_constants/margin_top = 2
-custom_constants/margin_left = 2
-custom_constants/margin_bottom = 1
+custom_constants/offset_top = 2
+custom_constants/offset_left = 2
+custom_constants/offset_bottom = 1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -20,121 +20,121 @@ __meta__ = {
 Level = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 64.0
-margin_bottom = 63.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 64.0
+offset_bottom = 63.0
 custom_constants/separation = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 62.0
-margin_bottom = 9.0
-custom_constants/margin_bottom = 2
+offset_right = 62.0
+offset_bottom = 9.0
+custom_constants/offset_bottom = 2
 
 [node name="LobbyName" type="Label" parent="VBoxContainer/MarginContainer"]
-margin_right = 62.0
-margin_bottom = 7.0
+offset_right = 62.0
+offset_bottom = 7.0
 text = "lobby name"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 10.0
-margin_right = 62.0
-margin_bottom = 11.0
+offset_top = 10.0
+offset_right = 62.0
+offset_bottom = 11.0
 
 [node name="Players" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 12.0
-margin_right = 62.0
-margin_bottom = 46.0
+offset_top = 12.0
+offset_right = 62.0
+offset_bottom = 46.0
 custom_constants/separation = 2
 
 [node name="Player1" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_right = 62.0
-margin_bottom = 7.0
+offset_right = 62.0
+offset_bottom = 7.0
 
 [node name="Player2" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 9.0
-margin_right = 62.0
-margin_bottom = 16.0
+offset_top = 9.0
+offset_right = 62.0
+offset_bottom = 16.0
 
 [node name="Number" parent="VBoxContainer/Players/Player2" index="0"]
-margin_top = 0.0
-margin_bottom = 7.0
+offset_top = 0.0
+offset_bottom = 7.0
 text = "2"
 
 [node name="Name" parent="VBoxContainer/Players/Player2" index="1"]
-margin_top = 0.0
-margin_right = 62.0
-margin_bottom = 7.0
+offset_top = 0.0
+offset_right = 62.0
+offset_bottom = 7.0
 
 [node name="Player3" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 18.0
-margin_right = 62.0
-margin_bottom = 25.0
+offset_top = 18.0
+offset_right = 62.0
+offset_bottom = 25.0
 
 [node name="Number" parent="VBoxContainer/Players/Player3" index="0"]
-margin_top = 0.0
-margin_bottom = 7.0
+offset_top = 0.0
+offset_bottom = 7.0
 text = "3"
 
 [node name="Name" parent="VBoxContainer/Players/Player3" index="1"]
-margin_top = 0.0
-margin_right = 62.0
-margin_bottom = 7.0
+offset_top = 0.0
+offset_right = 62.0
+offset_bottom = 7.0
 
 [node name="Player4" parent="VBoxContainer/Players" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 27.0
-margin_right = 62.0
-margin_bottom = 34.0
+offset_top = 27.0
+offset_right = 62.0
+offset_bottom = 34.0
 
 [node name="Number" parent="VBoxContainer/Players/Player4" index="0"]
-margin_top = 0.0
-margin_bottom = 7.0
+offset_top = 0.0
+offset_bottom = 7.0
 text = "4"
 
 [node name="Name" parent="VBoxContainer/Players/Player4" index="1"]
-margin_top = 0.0
-margin_right = 62.0
-margin_bottom = 7.0
+offset_top = 0.0
+offset_right = 62.0
+offset_bottom = 7.0
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-margin_top = 47.0
-margin_right = 62.0
-margin_bottom = 48.0
+offset_top = 47.0
+offset_right = 62.0
+offset_bottom = 48.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 49.0
-margin_right = 62.0
-margin_bottom = 60.0
-custom_constants/margin_top = 2
+offset_top = 49.0
+offset_right = 62.0
+offset_bottom = 60.0
+custom_constants/offset_top = 2
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
-margin_top = 2.0
-margin_right = 60.0
-margin_bottom = 11.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 11.0
 size_flags_horizontal = 0
 
 [node name="Start" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
-margin_right = 23.0
-margin_bottom = 9.0
+offset_right = 23.0
+offset_bottom = 9.0
 text = "Start"
 
 [node name="Back" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
-margin_left = 27.0
-margin_right = 46.0
-margin_bottom = 9.0
+offset_left = 27.0
+offset_right = 46.0
+offset_bottom = 9.0
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Options" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer5"]
-margin_left = 50.0
-margin_right = 60.0
-margin_bottom = 9.0
+offset_left = 50.0
+offset_right = 60.0
+offset_bottom = 9.0
 icon = ExtResource( 4 )
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer5/Start" to="." method="_on_Start_pressed"]

@@ -1,23 +1,23 @@
-tool
+@tool
 extends PanelContainer
 
-onready var import_menu : Container = $Body/ImportMenu
-onready var steps : Container = import_menu.get_node("Steps")
-onready var json_import_menu : Container = steps.get_node("JSONImportMenu")
-onready var tags_menu : Container = steps.get_node("TagsMenu")
-onready var select_animation_player_menu = steps.get_node("SelectAnimationPlayerMenu")
-onready var select_sprite_menu = steps.get_node("SelectSpriteMenu")
-onready var generate_button : Button = steps.get_node("GenerateButton")
+@onready var import_menu : Container = $Body/ImportMenu
+@onready var steps : Container = import_menu.get_node("Steps")
+@onready var json_import_menu : Container = steps.get_node("JSONImportMenu")
+@onready var tags_menu : Container = steps.get_node("TagsMenu")
+@onready var select_animation_player_menu = steps.get_node("SelectAnimationPlayerMenu")
+@onready var select_sprite_menu = steps.get_node("SelectSpriteMenu")
+@onready var generate_button : Button = steps.get_node("GenerateButton")
 
-onready var spritesheet_inspector : Container = $Body/SpritesheetInspector
+@onready var spritesheet_inspector : Container = $Body/SpritesheetInspector
 
-onready var alert_dialog : AcceptDialog = $AlertDialog
+@onready var alert_dialog : AcceptDialog = $AlertDialog
 
 
 const ERROR_MSG := {
 	AsepriteImporter.Error.MISSING_JSON_DATA : "Missing JSON Data!",
 	AsepriteImporter.Error.MISSING_ANIMATION_PLAYER : "Select an AnimationPlayer node!",
-	AsepriteImporter.Error.MISSING_SPRITE : "Select a Sprite node!",
+	AsepriteImporter.Error.MISSING_SPRITE : "Select a Sprite2D node!",
 	AsepriteImporter.Error.NO_TAGS_SELECTED : "No tags selected to import!",
 	AsepriteImporter.Error.DUPLICATE_TAG_NAME : "Two or more of the selected tags share the same name\nSelect only tags with distinct names",
 	AsepriteImporter.Error.MISSING_TEXTURE: "No texture selected!",
@@ -35,15 +35,15 @@ signal animations_generated(animation_player)
 
 
 func _ready() -> void:
-	import_menu.rect_size.x = IMPORT_MENU_INITIAL_WIDTH
+	import_menu.size.x = IMPORT_MENU_INITIAL_WIDTH
 
-	alert_dialog.set_as_toplevel(true)
+	alert_dialog.set_as_top_level(true)
 
-	json_import_menu.connect("data_imported", self, "_on_JSONImportMenu_data_imported")
-	json_import_menu.connect("data_cleared", self, "_on_JSONImportMenu_data_cleared")
-	tags_menu.connect("frame_selected", self, "_on_TagSelectMenu_frame_selected")
-	tags_menu.connect("tag_selected", self, "_on_TagSelectMenu_tag_selected")
-	generate_button.connect("pressed", self, "_on_GenerateButton_pressed")
+	json_import_menu.connect("data_imported",Callable(self,"_on_JSONImportMenu_data_imported"))
+	json_import_menu.connect("data_cleared",Callable(self,"_on_JSONImportMenu_data_cleared"))
+	tags_menu.connect("frame_selected",Callable(self,"_on_TagSelectMenu_frame_selected"))
+	tags_menu.connect("tag_selected",Callable(self,"_on_TagSelectMenu_tag_selected"))
+	generate_button.connect("pressed",Callable(self,"_on_GenerateButton_pressed"))
 
 
 func get_state() -> Dictionary:
@@ -103,7 +103,7 @@ func _on_GenerateButton_pressed() -> void:
 	var selected_tags : Array = tags_menu.get_selected_tags()
 	var animation_player : AnimationPlayer = select_animation_player_menu.animation_player
 	var sprite : Node = select_sprite_menu.sprite
-	var texture : Texture = spritesheet_inspector.get_texture()
+	var texture : Texture2D = spritesheet_inspector.get_texture()
 
 	var error := AsepriteImporter.generate_animations(import_data, selected_tags, animation_player, sprite, texture)
 

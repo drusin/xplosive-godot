@@ -1,10 +1,10 @@
-tool
+@tool
 extends Container
 
 
-onready var select_all_button : CheckBox = find_node("SelectAllButton")
-onready var options_list : VBoxContainer = find_node("OptionsList")
-onready var tree : Tree = $Tree
+@onready var select_all_button : CheckBox = find_child("SelectAllButton")
+@onready var options_list : VBoxContainer = find_child("OptionsList")
+@onready var tree : Tree = $Tree
 
 
 enum Columns {
@@ -32,29 +32,29 @@ func _ready():
 	tree.columns = Columns.size()
 
 	tree.set_column_expand(Columns.SELECTED, false)
-	tree.set_column_min_width(Columns.SELECTED, 32)
+	tree.set_column_custom_minimum_width(Columns.SELECTED, 32)
 
 	tree.set_column_title(Columns.NAME, "Name")
 	tree.set_column_expand(Columns.NAME, true)
-	tree.set_column_min_width(Columns.START, 48)
+	tree.set_column_custom_minimum_width(Columns.START, 48)
 
 	tree.set_column_title(Columns.START, "Start")
 	tree.set_column_expand(Columns.START, false)
-	tree.set_column_min_width(Columns.START, 48)
+	tree.set_column_custom_minimum_width(Columns.START, 48)
 
 	tree.set_column_title(Columns.END, "End")
 	tree.set_column_expand(Columns.END, false)
-	tree.set_column_min_width(Columns.END, 48)
+	tree.set_column_custom_minimum_width(Columns.END, 48)
 
 	tree.set_column_title(Columns.DIRECTION, "Direction")
 	tree.set_column_expand(Columns.DIRECTION, false)
-	tree.set_column_min_width(Columns.DIRECTION, 84)
+	tree.set_column_custom_minimum_width(Columns.DIRECTION, 84)
 
 	tree.set_column_titles_visible(true)
 
-	select_all_button.connect("toggled", self, "_on_SelectAllButton_toggled")
-	tree.connect("cell_selected", self, "_on_Tree_cell_selected")
-	tree.connect("item_edited", self, "_on_Tree_item_edited")
+	select_all_button.connect("toggled",Callable(self,"_on_SelectAllButton_toggled"))
+	tree.connect("cell_selected",Callable(self,"_on_Tree_cell_selected"))
+	tree.connect("item_edited",Callable(self,"_on_Tree_item_edited"))
 
 
 func clear_options() -> void:
@@ -86,17 +86,17 @@ func load_tags(tags : Array) -> void:
 		new_tree_item.set_text(Columns.NAME, tag.name)
 
 		new_tree_item.set_text(Columns.START, str(floor(tag.from)))
-		new_tree_item.set_text_align(Columns.START, TreeItem.ALIGN_CENTER)
+		new_tree_item.set_text_alignment(Columns.START, TreeItem.ALIGNMENT_CENTER)
 
 		new_tree_item.set_text(Columns.END, str(floor(tag.to)))
-		new_tree_item.set_text_align(Columns.END, TreeItem.ALIGN_CENTER)
+		new_tree_item.set_text_alignment(Columns.END, TreeItem.ALIGNMENT_CENTER)
 
 		new_tree_item.set_text(Columns.DIRECTION, "  %s" % tag.direction)
 		new_tree_item.set_selectable(Columns.DIRECTION, false)
 
 		_options.append(new_tree_item)
 
-	select_all_button.pressed = true
+	select_all_button.button_pressed = true
 	select_all_button.show()
 
 
@@ -129,7 +129,7 @@ func get_state() -> Dictionary:
 
 func set_state(new_state : Dictionary) -> void:
 	if new_state.has("selected_tags") and _options != []:
-		select_all_button.pressed = false
+		select_all_button.button_pressed = false
 
 		for tag in new_state.selected_tags:
 			_options[tag].set_checked(Columns.SELECTED, true)
@@ -153,7 +153,7 @@ func set_state(new_state : Dictionary) -> void:
 				return
 
 		_toggling_option = true
-		select_all_button.pressed = true
+		select_all_button.button_pressed = true
 		_toggling_option = false
 
 
@@ -185,7 +185,7 @@ func _on_Tree_item_edited() -> void:
 	if select_all_button.pressed:
 		for option in _options:
 			if option.is_checked(Columns.SELECTED):
-				select_all_button.pressed = false
+				select_all_button.button_pressed = false
 				break
 	else:
 		var is_all_selected := true
@@ -195,7 +195,7 @@ func _on_Tree_item_edited() -> void:
 				break
 
 		if is_all_selected:
-			select_all_button.pressed = true
+			select_all_button.button_pressed = true
 
 	_toggling_option = false
 

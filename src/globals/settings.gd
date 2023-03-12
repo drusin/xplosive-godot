@@ -7,18 +7,16 @@ var values := {
 }
 
 func save_settings() -> void:
-	var file = File.new()
-	file.open(Constants.SETTINGS_FILE, File.WRITE)
-	file.store_string(to_json(values))
-	file.close()
+	var file = FileAccess.open(Constants.SETTINGS_FILE, FileAccess.WRITE)
+	file.store_string(JSON.stringify(values))
 
 
 func load_settings() -> void:
-	var file = File.new()
-	if file.file_exists(Constants.SETTINGS_FILE):
-		file.open(Constants.SETTINGS_FILE, File.READ)
-		_merge_settings(JSON.parse(file.get_as_text()).result)
-	file.close()
+	if FileAccess.file_exists(Constants.SETTINGS_FILE):
+		var file = FileAccess.open(Constants.SETTINGS_FILE, FileAccess.READ)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(file.get_as_text())
+		_merge_settings(test_json_conv.get_data())
 
 
 func _merge_settings(loaded: Dictionary) -> void:
@@ -27,5 +25,5 @@ func _merge_settings(loaded: Dictionary) -> void:
 
 
 func delete_settings() -> void:
-	var dir = Directory.new()
+	var dir = DirAccess.open(Constants.SETTINGS_FILE)
 	dir.remove(Constants.SETTINGS_FILE)

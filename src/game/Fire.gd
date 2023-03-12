@@ -1,9 +1,9 @@
 extends Area2D
 
-var travel_vector = Vector2.ZERO setget _set_travel_vector
+var travel_vector = Vector2.ZERO : set = _set_travel_vector
 var burning_bodies := []
 
-onready var animation_tree = $AnimationTree
+@onready var animation_tree = $AnimationTree
 
 
 func _set_travel_vector(value):

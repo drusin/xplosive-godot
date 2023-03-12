@@ -7,44 +7,44 @@
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -34.0
+offset_top = -34.0
 theme = ExtResource( 1 )
-custom_constants/margin_top = 2
-custom_constants/margin_bottom = 1
+custom_constants/offset_top = 2
+custom_constants/offset_bottom = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-margin_top = 2.0
-margin_right = 64.0
-margin_bottom = 33.0
+offset_top = 2.0
+offset_right = 64.0
+offset_bottom = 33.0
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-margin_left = 15.0
-margin_right = 48.0
-margin_bottom = 31.0
-custom_constants/vseparation = 2
+offset_left = 15.0
+offset_right = 48.0
+offset_bottom = 31.0
+custom_constants/v_separation = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Local" type="Button" parent="CenterContainer/GridContainer"]
-margin_right = 33.0
-margin_bottom = 9.0
+offset_right = 33.0
+offset_bottom = 9.0
 text = "Local"
 
 [node name="Online" type="Button" parent="CenterContainer/GridContainer"]
-margin_top = 11.0
-margin_right = 33.0
-margin_bottom = 20.0
+offset_top = 11.0
+offset_right = 33.0
+offset_bottom = 20.0
 text = "Online"
 
 [node name="Settings" type="Button" parent="CenterContainer/GridContainer"]
-margin_top = 22.0
-margin_right = 33.0
-margin_bottom = 31.0
+offset_top = 22.0
+offset_right = 33.0
+offset_bottom = 31.0
 text = "Settings"
 
 [connection signal="pressed" from="CenterContainer/GridContainer/Local" to="." method="_on_Local_pressed"]

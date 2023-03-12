@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 class_name AsepriteImportData
 
@@ -60,7 +60,9 @@ func load(filepath : String) -> int:
 	var file_text = file.get_as_text()
 	file.close()
 
-	var json := JSON.parse(file_text)
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(file_text)
+	var json := test_json_conv.get_data()
 	if json.error != OK:
 		return Error.ERR_JSON_PARSE_ERROR
 
@@ -118,7 +120,7 @@ func get_tags() -> Array:
 	return json_data.meta.frameTags
 
 
-static func _validate_json(json : JSONParseResult) -> bool:
+static func _validate_json(json : JSON) -> bool:
 	var data : Dictionary = json.result
 
 	if not (data is Dictionary and data.has_all(["frames", "meta"])):
@@ -147,7 +149,7 @@ static func _match_template(data, template) -> bool:
 	match typeof(template):
 		TYPE_INT:
 			# When parsed, the JSON interprets integer values as floats
-			if template == TYPE_INT and typeof(data) == TYPE_REAL:
+			if template == TYPE_INT and typeof(data) == TYPE_FLOAT:
 				return true
 			return typeof(data) == template
 		TYPE_DICTIONARY:
@@ -164,7 +166,7 @@ static func _match_template(data, template) -> bool:
 			if typeof(data) != TYPE_ARRAY:
 				return false
 
-			if data.empty():
+			if data.is_empty():
 				return false
 
 			for element in data:

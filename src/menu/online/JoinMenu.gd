@@ -4,14 +4,14 @@ const ICON_WIDTH := 5
 const ICON_HEIGHT := 7
 var ICONS := load("res://assets/lobby-icons/icons.png")
 
-onready var back_button = $GridContainer/Back
-onready var lobby_container = $GridContainer/Control/ScrollContainer/LobbyContainer
+@onready var back_button = $GridContainer/Back
+@onready var lobby_container = $GridContainer/Control/ScrollContainer/LobbyContainer
 
 
 func _ready() -> void:
 	fullscreen = true
 # warning-ignore:return_value_discarded
-	SignalingClient.connect("lobby_list_recieved", self, "update_lobbies")
+	SIGNALING_CLIENT.connect("lobby_list_recieved",Callable(self,"update_lobbies"))
 
 
 func focus_default() -> void:
@@ -39,14 +39,14 @@ func create_lobby_button(lobby: Dictionary) -> Button:
 	
 	button.text = lobby.name
 	button.size_flags_horizontal = SIZE_EXPAND_FILL
-	button.align = Button.ALIGN_LEFT
+	button.align = HORIZONTAL_ALIGNMENT_LEFT
 # warning-ignore:return_value_discarded
-	button.connect("pressed", self, "join_lobby", [lobby])
+	button.connect("pressed",Callable(self,"join_lobby").bind(lobby))
 	return button
 
 
 func join_lobby(lobby: Dictionary) -> void:
-	SignalingClient.join_lobby(lobby.id)
+	SIGNALING_CLIENT.join_lobby(lobby.id)
 	emit_signal("transition", "Lobby")
 
 

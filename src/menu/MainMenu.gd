@@ -1,6 +1,6 @@
 extends AbstractMenu
 
-onready var local_button = $CenterContainer/GridContainer/Local
+@onready var local_button = $CenterContainer/GridContainer/Local
 
 
 func focus_default():
@@ -12,7 +12,7 @@ func _on_Local_pressed():
 
 
 func _on_Online_pressed():
-	SignalingClient.connect_to(Constants.SIGNALING_URL, Settings.values.alias)
+	SIGNALING_CLIENT.connect_to(Constants.SIGNALING_URL, Settings.values.alias)
 	emit_signal("transition", "OnlineMenu")
 
 

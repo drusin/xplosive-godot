@@ -6,47 +6,7 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Control",
-"class": "AbstractMenu",
-"language": "GDScript",
-"path": "res://src/menu/abstract_menu.gd"
-}, {
-"base": "Node",
-"class": "AsepriteImportData",
-"language": "GDScript",
-"path": "res://addons/aseprite_importer/classes/AsepriteImportData.gd"
-}, {
-"base": "Node",
-"class": "AsepriteImporter",
-"language": "GDScript",
-"path": "res://addons/aseprite_importer/classes/AsepriteImporter.gd"
-}, {
-"base": "Object",
-"class": "Constants",
-"language": "GDScript",
-"path": "res://src/globals/constants.gd"
-}, {
-"base": "Node",
-"class": "EditorTheme",
-"language": "GDScript",
-"path": "res://addons/aseprite_importer/classes/EditorTheme.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "Player",
-"language": "GDScript",
-"path": "res://src/game/Player.gd"
-} ]
-_global_script_class_icons={
-"AbstractMenu": "",
-"AsepriteImportData": "",
-"AsepriteImporter": "",
-"Constants": "",
-"EditorTheme": "",
-"Player": ""
-}
+config_version=5
 
 [WAT]
 
@@ -57,38 +17,43 @@ TestStrategy={
 "repeat": 1,
 "strategy": "RunAll"
 }
-Tags=PoolStringArray(  )
+Tags=PackedStringArray()
 Display=8
 
 [application]
 
 config/name="Xplosive-godot"
 run/main_scene="res://src/menu/Menu.tscn"
-boot_splash/bg_color=Color( 0.180392, 0.188235, 0.215686, 1 )
+config/features=PackedStringArray("4.0")
+boot_splash/bg_color=Color(0.180392, 0.188235, 0.215686, 1)
 config/icon="res://icon.png"
 
 [autoload]
 
-SignalingClient="*res://src/globals/online/signaling_client.gd"
+SIGNALING_CLIENT="*res://src/globals/online/signaling_client.gd"
 MultiplayerState="*res://src/globals/online/multiplayer_state.gd"
 Settings="*res://src/globals/settings.gd"
 
 [display]
 
-window/size/width=64
-window/size/height=64
-window/size/test_width=640
-window/size/test_height=640
+window/size/viewport_width=64
+window/size/viewport_height=64
+window/size/window_width_override=640
+window/size/window_height_override=640
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "WAT", "aseprite_importer", "gut", "open-external-editor" )
+enabled=PackedStringArray("res://addons/aseprite_importer/plugin.cfg")
 
 [gdnative]
 
-singletons=[  ]
+singletons=[]
 
 [importer_defaults]
 
@@ -126,8 +91,9 @@ texture={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.180392, 0.188235, 0.215686, 1)
+environment/defaults/default_environment="res://default_env.tres"
+textures/canvas_textures/default_texture_filter=0
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.180392, 0.188235, 0.215686, 1 )
-environment/default_environment="res://default_env.tres"

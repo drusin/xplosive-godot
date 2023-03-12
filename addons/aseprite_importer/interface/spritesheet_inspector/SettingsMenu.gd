@@ -1,8 +1,8 @@
-tool
+@tool
 extends Container
 
 
-onready var options : Container = $Options
+@onready var options : Container = $Options
 
 
 const PROP_TO_COLOR_MENU := {
@@ -18,7 +18,7 @@ const DEFAULT_SETTINGS :={
 		visibility = true,
 	},
 	selection_border = {
-		color = Color.yellow,
+		color = Color.YELLOW,
 		visibility = true,
 	},
 	texture_background = {
@@ -26,15 +26,15 @@ const DEFAULT_SETTINGS :={
 		visibility = true,
 	},
 	inspector_background = {
-		color = Color.black,
+		color = Color.BLACK,
 	},
 }
 
 
-var settings := DEFAULT_SETTINGS.duplicate(true) setget set_settings
+var settings := DEFAULT_SETTINGS.duplicate(true) : set = set_settings
 
 
-signal settings_changed(settings)
+signal changed(settings)
 
 
 func _ready():
@@ -44,7 +44,7 @@ func _ready():
 
 		color_menu.set_meta("property", property)
 
-		color_menu.connect("property_changed", self, "_on_ColorMenuItem_property_changed")
+		color_menu.connect("property_changed",Callable(self,"_on_ColorMenuItem_property_changed"))
 
 
 # Setters and Getters
@@ -61,7 +61,7 @@ func set_settings(new_settings : Dictionary) -> void:
 		color_menu.color_value = settings[property].color
 		color_menu.visibility = settings[property].get("visibility", false)
 
-	emit_signal("settings_changed", settings)
+	emit_signal("changed", settings)
 
 
 # Signal Callbacks
@@ -71,4 +71,4 @@ func _on_ColorMenuItem_property_changed(color_menu_item : Node) -> void:
 	settings[property]["color"] = color_menu_item.color_value
 	settings[property]["visibility"] = color_menu_item.visibility
 
-	emit_signal("settings_changed", settings)
+	emit_signal("changed", settings)

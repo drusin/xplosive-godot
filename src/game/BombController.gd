@@ -1,15 +1,15 @@
 extends Node2D
 
-export (PackedScene)var Player
-export (PackedScene)var Bomb
-export (PackedScene)var Fire
-export (NodePath)var players_path
+@export (PackedScene)var Player
+@export (PackedScene)var Bomb
+@export (PackedScene)var Fire
+@export (NodePath)var players_path
 
 var players: Node;
 
-onready var bomb_container = $Bombs
-onready var fire_container = $Fires
-onready var fire_controller_container = $FireControllers
+@onready var bomb_container = $Bombs
+@onready var fire_container = $Fires
+@onready var fire_controller_container = $FireControllers
 
 func _ready() -> void:
 	_assure_players()
@@ -17,9 +17,9 @@ func _ready() -> void:
 
 func _assure_players() -> void:
 	if players_path.is_empty():
-		print("Path to players is empty! Creating fake player for testing...")
+		print("Path3D to players is empty! Creating fake player for testing...")
 		var area := Area2D.new()
-		area.add_child(Player.instance())
+		area.add_child(Player.instantiate())
 		add_child(area)
 		players_path = area.get_path()
 		init()
@@ -33,7 +33,7 @@ func init() -> void:
 
 func _connect_to_controller(player: Player) -> void:
 # warning-ignore:return_value_discarded
-	player.controller.connect("bomb_pressed", self, "_on_bomb_pressed")
+	player.controller.connect("bomb_pressed",Callable(self,"_on_bomb_pressed"))
 
 
 
@@ -45,12 +45,12 @@ func _on_bomb_pressed(player: Player) -> void:
 
 
 func _create_bomb(player, position: Vector2) -> Node:
-	var bomb = Bomb.instance();
+	var bomb = Bomb.instantiate();
 	bomb.player = player
 	bomb.power = player.power
 	bomb.fire_container = fire_container
 	bomb.fire_controller_container = fire_controller_container
-	bomb.connect("exploded", self, "_on_bomb_exploded")
+	bomb.connect("exploded",Callable(self,"_on_bomb_exploded"))
 	bomb_container.add_child(bomb)
 	bomb.global_position = position
 	bomb.global_position.x = round((bomb.global_position.x + 4) / 8) * 8 - 4
@@ -74,7 +74,7 @@ func create_sync_data() -> Dictionary:
 	return { bombs = bombs, fires = fires }
 
 
-puppet func synchronize(data: Dictionary) -> void:
+@rpc func synchronize(data: Dictionary) -> void:
 	for bomb in bomb_container.get_children():
 		bomb.free()
 	_create_bombs(data.bombs)
@@ -95,7 +95,7 @@ func _create_bombs(bombs: Array) -> void:
 
 func _create_fires(fires: Array) -> void:
 	for fire in fires:
-		var instance = Fire.instance()
+		var instance = Fire.instantiate()
 		instance.global_position = fire.position
 		instance.travel_vector = fire.travel_vector
 		fire_container.add_child(instance)

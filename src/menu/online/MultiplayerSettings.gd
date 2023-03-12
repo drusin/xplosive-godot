@@ -1,10 +1,10 @@
 extends AbstractMenu
 
-onready var save_button = $GridContainer/HBoxContainer/Save
-onready var host_settings = $GridContainer/Control/ScrollContainer/LobbyContainer/HostSettings
-onready var lobby_name_edit = host_settings.get_node("LobbyName")
-onready var lobby_password_edit = host_settings.get_node("LobbyPassword")
-onready var player_name_edit = $GridContainer/Control/ScrollContainer/LobbyContainer/PlayerName
+@onready var save_button = $GridContainer/HBoxContainer/Save
+@onready var host_settings = $GridContainer/Control/ScrollContainer/LobbyContainer/HostSettings
+@onready var lobby_name_edit = host_settings.get_node("LobbyName")
+@onready var lobby_password_edit = host_settings.get_node("LobbyPassword")
+@onready var player_name_edit = $GridContainer/Control/ScrollContainer/LobbyContainer/PlayerName
 
 func _ready() -> void:
 	fullscreen = true
@@ -15,7 +15,7 @@ func focus_default() -> void:
 
 
 func on_show() -> void:
-	host_settings.visible = !MultiplayerState.online or get_tree().is_network_server()
+	host_settings.visible = !MultiplayerState.online or get_tree().is_server()
 	lobby_name_edit.text = Settings.values.lobby_name
 	lobby_password_edit.text = Settings.values.lobby_password
 	player_name_edit.text = Settings.values.alias
@@ -28,9 +28,9 @@ func _on_Save_pressed() -> void:
 	Settings.save_settings()
 	
 	if MultiplayerState.online:
-		SignalingClient.send_alias(player_name_edit.text)
-		if get_tree().is_network_server():
-			SignalingClient.edit_lobby(
+		SIGNALING_CLIENT.send_alias(player_name_edit.text)
+		if get_tree().is_server():
+			SIGNALING_CLIENT.edit_lobby(
 					MultiplayerState.lobby.id,
 					lobby_name_edit.text,
 					lobby_password_edit.text,

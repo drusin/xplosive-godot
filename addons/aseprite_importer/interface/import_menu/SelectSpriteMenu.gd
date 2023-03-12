@@ -1,28 +1,28 @@
-tool
+@tool
 extends Container
 
 
-onready var select_button : Button = $Button
-onready var select_node_dialog : WindowDialog = $SelectNodeDialog
+@onready var select_button : Button = $Button
+@onready var select_node_dialog : Window = $SelectNodeDialog
 
 
 const SELECT_BUTTON_DEFAULT_TEXT := "Select a Node"
 
 
-var sprite : Node setget set_sprite
+var sprite : Node : set = set_sprite
 
-var _sprite_icon : Texture
-var _sprite3d_icon : Texture
+var _sprite_icon : Texture2D
+var _sprite3d_icon : Texture2D
 
 
 signal node_selected(sprite)
 
 
 func _ready():
-	select_node_dialog.class_filters = ["Sprite", "Sprite3D"]
+	select_node_dialog.class_filters = ["Sprite2D", "Sprite3D"]
 
-	select_button.connect("pressed", self, "_on_SelectButton_pressed")
-	select_node_dialog.connect("node_selected", self, "_on_SelectNodeDialog_node_selected")
+	select_button.connect("pressed",Callable(self,"_on_SelectButton_pressed"))
+	select_node_dialog.connect("node_selected",Callable(self,"_on_SelectNodeDialog_node_selected"))
 
 
 func get_state() -> Dictionary:
@@ -48,7 +48,7 @@ func set_state(new_state : Dictionary) -> void:
 func _update_theme(editor_theme : EditorTheme) -> void:
 	var is_sprite3d := select_button.icon == _sprite3d_icon
 
-	_sprite_icon = editor_theme.get_icon("Sprite")
+	_sprite_icon = editor_theme.get_icon("Sprite2D")
 	_sprite3d_icon = editor_theme.get_icon("Sprite3D")
 
 	if is_sprite3d:
@@ -64,7 +64,7 @@ func set_sprite(node : Node) -> void:
 	var node_path := node.owner.get_parent().get_path_to(node)
 	select_button.text = node_path
 
-	if node.is_class("Sprite"):
+	if node.is_class("Sprite2D"):
 		select_button.icon = _sprite_icon
 	elif node.is_class("Sprite3D"):
 		select_button.icon = _sprite3d_icon

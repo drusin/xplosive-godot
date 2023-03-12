@@ -1,6 +1,6 @@
 extends AbstractMenu
 
-onready var create_button = $CenterContainer/GridContainer/Create
+@onready var create_button = $CenterContainer/GridContainer/Create
 
 
 func focus_default():
@@ -16,5 +16,5 @@ func _on_Join_pressed():
 
 
 func _on_Back_pressed():
-	SignalingClient.disconnect_from_host()
+	SIGNALING_CLIENT.disconnect_from_host()
 	emit_signal("transition_back")

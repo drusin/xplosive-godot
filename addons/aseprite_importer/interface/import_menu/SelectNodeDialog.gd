@@ -1,17 +1,17 @@
-tool
-extends WindowDialog
+@tool
+extends Window
 
 
-onready var body : VBoxContainer = $MarginContainer/Body
+@onready var body : VBoxContainer = $MarginContainer/Body
 
-onready var edited_scene_view : Container = body.get_node('EditedSceneView')
-onready var scene_tree : Tree = edited_scene_view.get_node('SceneTree')
+@onready var edited_scene_view : Container = body.get_node('EditedSceneView')
+@onready var scene_tree : Tree = edited_scene_view.get_node('SceneTree')
 
-onready var footer : HBoxContainer = body.get_node('Footer')
-onready var confirm_button : Button = footer.get_node('ConfirmButton')
-onready var cancel_button : Button = footer.get_node('CancelButton')
+@onready var footer : HBoxContainer = body.get_node('Footer')
+@onready var confirm_button : Button = footer.get_node('ConfirmButton')
+@onready var cancel_button : Button = footer.get_node('CancelButton')
 
-onready var alert_dialog : AcceptDialog = $AlertDialog
+@onready var alert_dialog : AcceptDialog = $AlertDialog
 
 
 enum Columns {
@@ -30,7 +30,7 @@ const WINDOW_TITLE_WITH_FILTER = "Select the %s Node"
 const DISABLED_ICON_MODULATE := Color(1, 1, 1, .5)
 
 
-var class_filters : Array setget set_class_filters
+var class_filters : Array : set = set_class_filters
 var edited_scene_root : Node
 
 
@@ -46,11 +46,11 @@ func _ready():
 	scene_tree.columns = Columns.size()
 	scene_tree.set_column_expand(Columns.PATH, false)
 
-	alert_dialog.set_as_toplevel(true)
+	alert_dialog.set_as_top_level(true)
 
-	scene_tree.connect('item_activated', self, '_on_node_selected')
-	confirm_button.connect('pressed', self, '_on_node_selected')
-	cancel_button.connect('pressed', self, 'hide')
+	scene_tree.connect('item_activated',Callable(self,'_on_node_selected'))
+	confirm_button.connect('pressed',Callable(self,'_on_node_selected'))
+	cancel_button.connect('pressed',Callable(self,'hide'))
 
 
 func initialize() -> bool:
@@ -69,7 +69,7 @@ func initialize() -> bool:
 	var filtered_node_count := _add_node_to_scene_tree(edited_scene_root)
 
 	if class_filters and filtered_node_count == 0:
-		var filters_str := PoolStringArray(class_filters).join(" / ")
+		var filters_str := " / ".join(PackedStringArray(class_filters))
 		_show_alert(MSG_NO_FILTERED_NODES_IN_SCENE % filters_str)
 		return false
 
@@ -125,7 +125,7 @@ func set_class_filters(filters : Array) -> void:
 	class_filters = filters
 
 	if class_filters != []:
-		var filters_str := PoolStringArray(class_filters).join(" / ")
+		var filters_str := " / ".join(PackedStringArray(class_filters))
 		window_title = WINDOW_TITLE_WITH_FILTER % filters_str
 	else:
 		window_title = WINDOW_TITLE_DEFAULT

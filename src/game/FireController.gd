@@ -2,11 +2,11 @@ extends Node2D
 
 var fire_container
 
-export (PackedScene)var Fire
-export var power = 3
+@export (PackedScene)var Fire
+@export var power = 3
 
-onready var parent = get_parent()
-onready var raycast = $RayCast2D
+@onready var parent = get_parent()
+@onready var raycast = $RayCast2D
 
 
 func _ready():
@@ -37,10 +37,10 @@ func one_direction(x_or_y, negative_or_positive):
 
 
 func create_fire(position, travel_vector, raycast_start):
-	var fire = Fire.instance()
+	var fire = Fire.instantiate()
 	fire.global_position = position
 	fire_container.call_deferred("add_child", fire)
 	fire.call_deferred("_set_travel_vector",travel_vector)
 	raycast.global_position = raycast_start
-	raycast.cast_to = position - raycast_start
+	raycast.target_position = position - raycast_start
 	raycast.force_raycast_update()

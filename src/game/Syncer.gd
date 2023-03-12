@@ -5,17 +5,17 @@ const FIRE = "Fire"
 
 var accumulator := 0.0
 
-export (NodePath)var players_path
-export (NodePath)var tile_map_path
-export (NodePath)var bomb_controller_path
+@export (NodePath)var players_path
+@export (NodePath)var tile_map_path
+@export (NodePath)var bomb_controller_path
 
-onready var players := get_node(players_path)
-onready var tile_map := get_node(tile_map_path)
-onready var bomb_controller := get_node(bomb_controller_path)
+@onready var players := get_node(players_path)
+@onready var tile_map := get_node(tile_map_path)
+@onready var bomb_controller := get_node(bomb_controller_path)
 
 
 func _process(delta):
-	if !MultiplayerState.online or !get_tree().is_network_server():
+	if !MultiplayerState.online or !get_tree().is_server():
 		set_process(false)
 		return
 	
