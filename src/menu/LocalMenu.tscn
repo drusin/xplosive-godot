@@ -1,74 +1,56 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://c4f7urehiju0q"]
 
-[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/menu/LocalMenu.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/menu/LocalMenu.gd" id="2"]
 
 [node name="LocalMenu" type="MarginContainer"]
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -34.0
-theme = ExtResource( 1 )
-custom_constants/offset_top = 2
-custom_constants/offset_bottom = 1
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 2.0
-offset_right = 64.0
-offset_bottom = 33.0
+layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-offset_left = 6.0
-offset_right = 58.0
-offset_bottom = 31.0
+layout_mode = 2
+theme_override_constants/h_separation = 0
 columns = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/GridContainer"]
-offset_right = 7.0
-offset_bottom = 31.0
-custom_constants/offset_bottom = 22
+layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Minus" type="Button" parent="CenterContainer/GridContainer/MarginContainer2"]
-offset_right = 7.0
-offset_bottom = 9.0
+layout_mode = 2
+size_flags_vertical = 0
 text = "-"
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/GridContainer"]
-offset_left = 7.0
-offset_right = 45.0
-offset_bottom = 31.0
-custom_constants/v_separation = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+theme_override_constants/v_separation = 2
 
 [node name="Start" type="Button" parent="CenterContainer/GridContainer/GridContainer"]
-offset_right = 38.0
-offset_bottom = 9.0
+layout_mode = 2
 text = "2 Players"
 
 [node name="Tutorial" type="Button" parent="CenterContainer/GridContainer/GridContainer"]
-offset_top = 11.0
-offset_right = 38.0
-offset_bottom = 20.0
+layout_mode = 2
 text = "Tutorial"
 
 [node name="Back" type="Button" parent="CenterContainer/GridContainer/GridContainer"]
-offset_top = 22.0
-offset_right = 38.0
-offset_bottom = 31.0
+layout_mode = 2
 text = "Back"
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/GridContainer"]
-offset_left = 45.0
-offset_right = 52.0
-offset_bottom = 31.0
-custom_constants/offset_bottom = 22
+layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Plus" type="Button" parent="CenterContainer/GridContainer/MarginContainer"]
-offset_right = 7.0
-offset_bottom = 9.0
+layout_mode = 2
 text = "+"
 
 [connection signal="pressed" from="CenterContainer/GridContainer/GridContainer/Start" to="." method="_on_Start_pressed"]

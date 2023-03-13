@@ -1,50 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://ci0rcmltieyci"]
 
-[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/menu/MainMenu.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/menu/MainMenu.gd" id="2"]
 
 [node name="MainMenu" type="MarginContainer"]
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -34.0
-theme = ExtResource( 1 )
-custom_constants/offset_top = 2
-custom_constants/offset_bottom = 1
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 2.0
-offset_right = 64.0
-offset_bottom = 33.0
+layout_direction = 1
+layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-offset_left = 15.0
-offset_right = 48.0
-offset_bottom = 31.0
-custom_constants/v_separation = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+theme_override_constants/v_separation = 2
 
 [node name="Local" type="Button" parent="CenterContainer/GridContainer"]
-offset_right = 33.0
-offset_bottom = 9.0
+layout_mode = 2
 text = "Local"
 
 [node name="Online" type="Button" parent="CenterContainer/GridContainer"]
-offset_top = 11.0
-offset_right = 33.0
-offset_bottom = 20.0
+layout_mode = 2
 text = "Online"
 
 [node name="Settings" type="Button" parent="CenterContainer/GridContainer"]
-offset_top = 22.0
-offset_right = 33.0
-offset_bottom = 31.0
+layout_mode = 2
 text = "Settings"
 
 [connection signal="pressed" from="CenterContainer/GridContainer/Local" to="." method="_on_Local_pressed"]

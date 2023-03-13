@@ -17,6 +17,7 @@ layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_constants/v_separation = 2
 
 [node name="Create" type="Button" parent="CenterContainer/GridContainer"]
 layout_mode = 2

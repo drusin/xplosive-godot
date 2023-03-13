@@ -1,65 +1,47 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dbdaf5etrhg2l"]
 
-[ext_resource path="res://assets/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/menu/online/CreateMenu.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="1"]
+[ext_resource type="Script" path="res://src/menu/online/CreateMenu.gd" id="2"]
 
 [node name="CreateMenu" type="MarginContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
-custom_constants/offset_top = 2
-custom_constants/offset_bottom = 2
-script = ExtResource( 2 )
+theme = ExtResource("1")
+script = ExtResource("2")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 2.0
-offset_right = 64.0
-offset_bottom = 62.0
+layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-offset_left = 7.0
-offset_right = 57.0
-offset_bottom = 60.0
-custom_constants/v_separation = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 2
+theme_override_constants/v_separation = 2
 
 [node name="NameLabel" type="Label" parent="CenterContainer/GridContainer"]
-offset_right = 50.0
-offset_bottom = 7.0
+layout_mode = 2
+theme = ExtResource("1")
 text = "Lobby name:"
 
 [node name="NameEdit" type="LineEdit" parent="CenterContainer/GridContainer"]
-offset_top = 9.0
-offset_right = 50.0
-offset_bottom = 18.0
+layout_mode = 2
 text = "Xplosive!"
 caret_blink = true
 
 [node name="PasswordLabel" type="Label" parent="CenterContainer/GridContainer"]
-offset_top = 20.0
-offset_right = 50.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "Password:"
 
 [node name="PasswordEdit" type="LineEdit" parent="CenterContainer/GridContainer"]
-offset_top = 29.0
-offset_right = 50.0
-offset_bottom = 38.0
+layout_mode = 2
 secret = true
 caret_blink = true
 
 [node name="Create" type="Button" parent="CenterContainer/GridContainer"]
-offset_top = 40.0
-offset_right = 50.0
-offset_bottom = 49.0
+layout_mode = 2
 text = "Create lobby"
 
 [node name="Back" type="Button" parent="CenterContainer/GridContainer"]
-offset_top = 51.0
-offset_right = 50.0
-offset_bottom = 60.0
+layout_mode = 2
 text = "Back"
 
 [connection signal="pressed" from="CenterContainer/GridContainer/Create" to="." method="_on_Create_pressed"]
