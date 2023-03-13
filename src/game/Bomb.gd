@@ -5,7 +5,7 @@ signal exploded(player)
 const BITS_TO_CHECK := [2, 3, 4, 5]
 
 @export var power := 2
-@export (PackedScene)var FireController
+@export var FireController: PackedScene
 
 var player: Player
 var checked_for_players := false
@@ -22,7 +22,7 @@ func _ready() -> void:
 	if fire_controller_container == null:
 		fire_controller_container = get_parent()
 	
-	sprite.playing = true
+	sprite.play()
 
 
 func _physics_process(_delta) -> void:

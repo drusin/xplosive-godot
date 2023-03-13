@@ -1,9 +1,9 @@
 extends Node2D
 
-@export (PackedScene)var Player
-@export (PackedScene)var Bomb
-@export (PackedScene)var Fire
-@export (NodePath)var players_path
+@export var Player: PackedScene
+@export var Bomb: PackedScene
+@export var Fire: PackedScene
+@export var players_path: NodePath
 
 var players: Node;
 

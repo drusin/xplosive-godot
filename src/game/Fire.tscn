@@ -1,275 +1,283 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=3 uid="uid://i1hwqxd3orei"]
 
-[ext_resource path="res://assets/1bitxplosive.png" type="Texture2D" id=1]
-[ext_resource path="res://src/game/Fire.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://cubfkkns5fiau" path="res://assets/1bitxplosive.png" id="1"]
+[ext_resource type="Script" path="res://src/game/Fire.gd" id="2"]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
-animation = "horizontal"
+[sub_resource type="AnimationNodeAnimation" id="1"]
+animation = &"horizontal"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
-animation = "left"
+[sub_resource type="AnimationNodeAnimation" id="2"]
+animation = &"left"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
-animation = "vertical"
+[sub_resource type="AnimationNodeAnimation" id="3"]
+animation = &"vertical"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
-animation = "vertical"
+[sub_resource type="AnimationNodeAnimation" id="4"]
+animation = &"vertical"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "horizontal"
+[sub_resource type="AnimationNodeAnimation" id="5"]
+animation = &"horizontal"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "down"
+[sub_resource type="AnimationNodeAnimation" id="6"]
+animation = &"down"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "up"
+[sub_resource type="AnimationNodeAnimation" id="7"]
+animation = &"up"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "right"
+[sub_resource type="AnimationNodeAnimation" id="8"]
+animation = &"right"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=9]
-blend_point_0/node = SubResource( 1 )
-blend_point_0/pos = Vector2( -2, 0 )
-blend_point_1/node = SubResource( 2 )
-blend_point_1/pos = Vector2( -1, 0 )
-blend_point_2/node = SubResource( 3 )
-blend_point_2/pos = Vector2( 0, -2 )
-blend_point_3/node = SubResource( 4 )
-blend_point_3/pos = Vector2( 0, 2 )
-blend_point_4/node = SubResource( 5 )
-blend_point_4/pos = Vector2( 2, 0 )
-blend_point_5/node = SubResource( 6 )
-blend_point_5/pos = Vector2( 0, 0.9 )
-blend_point_6/node = SubResource( 7 )
-blend_point_6/pos = Vector2( 0, -1 )
-blend_point_7/node = SubResource( 8 )
-blend_point_7/pos = Vector2( 0.9, 0 )
-min_space = Vector2( -2, -2 )
-max_space = Vector2( 2, 2 )
+[sub_resource type="AnimationNodeBlendSpace2D" id="9"]
+blend_point_0/node = SubResource("1")
+blend_point_0/pos = Vector2(-2, 0)
+blend_point_1/node = SubResource("2")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("3")
+blend_point_2/pos = Vector2(0, -2)
+blend_point_3/node = SubResource("4")
+blend_point_3/pos = Vector2(0, 2)
+blend_point_4/node = SubResource("5")
+blend_point_4/pos = Vector2(2, 0)
+blend_point_5/node = SubResource("6")
+blend_point_5/pos = Vector2(0, 0.9)
+blend_point_6/node = SubResource("7")
+blend_point_6/pos = Vector2(0, -1)
+blend_point_7/node = SubResource("8")
+blend_point_7/pos = Vector2(0.9, 0)
+min_space = Vector2(-2, -2)
+max_space = Vector2(2, 2)
 blend_mode = 1
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id="10"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 224, 0, 8, 8 ) ]
+"values": [Rect2(224, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id="11"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 272, 0, 8, 8 ) ]
+"values": [Rect2(272, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id="12"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 232, 0, 8, 8 ) ]
+"values": [Rect2(232, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id="13"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 248, 0, 8, 8 ) ]
+"values": [Rect2(248, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id="14"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 256, 0, 8, 8 ) ]
+"values": [Rect2(256, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id="15"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 264, 0, 8, 8 ) ]
+"values": [Rect2(264, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id="16"]
 length = 0.333
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Rect2( 240, 0, 8, 8 ) ]
+"values": [Rect2(240, 0, 8, 8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
-size = Vector2( 3, 3 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u66n2"]
+_data = {
+"center": SubResource("10"),
+"down": SubResource("11"),
+"horizontal": SubResource("12"),
+"left": SubResource("13"),
+"right": SubResource("14"),
+"up": SubResource("15"),
+"vertical": SubResource("16")
+}
+
+[sub_resource type="RectangleShape2D" id="17"]
+size = Vector2(3, 3)
 
 [node name="Fire" type="Area2D"]
-position = Vector2( 32, 32 )
+position = Vector2(32, 32)
 collision_layer = 128
 collision_mask = 67
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 9 )
+tree_root = SubResource("9")
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = Vector2( 0, -0.0862069 )
+parameters/blend_position = Vector2(0, -0.0862069)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/center = SubResource( 10 )
-anims/down = SubResource( 11 )
-anims/horizontal = SubResource( 12 )
-anims/left = SubResource( 13 )
-anims/right = SubResource( 14 )
-anims/up = SubResource( 15 )
-anims/vertical = SubResource( 16 )
+libraries = {
+"": SubResource("AnimationLibrary_u66n2")
+}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource("1")
 region_enabled = true
-region_rect = Rect2( 224, 0, 8, 8 )
+region_rect = Rect2(224, 0, 8, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 17 )
+shape = SubResource("17")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_Fire_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

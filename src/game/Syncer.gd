@@ -5,9 +5,9 @@ const FIRE = "Fire"
 
 var accumulator := 0.0
 
-@export (NodePath)var players_path
-@export (NodePath)var tile_map_path
-@export (NodePath)var bomb_controller_path
+@export var players_path: NodePath
+@export var tile_map_path: NodePath
+@export var bomb_controller_path: NodePath
 
 @onready var players := get_node(players_path)
 @onready var tile_map := get_node(tile_map_path)

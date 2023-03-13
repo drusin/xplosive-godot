@@ -1,22 +1,22 @@
 extends TileMap
 
 enum { 
-	EMPTY = -1
+	EMPTY = -1,
 	DESTROYABLE = 4,
-	BREAKING = 5,
+	BREAKING = 5
 }
 
 
 func explode(world_position):
 	var map_position = local_to_map(world_position)
-	if get_cellv(map_position) == DESTROYABLE:
-		set_cellv(map_position, BREAKING)
+	if get_cell_source_id(0, map_position) == DESTROYABLE:
+		set_cell(0, map_position, BREAKING)
 
 
 func burning_finished(world_position):
 	var map_position = local_to_map(world_position)
-	if get_cellv(map_position) == BREAKING:
-		set_cellv(map_position, EMPTY)
+	if get_cell_source_id(0, map_position) == BREAKING:
+		set_cell(0, map_position, EMPTY)
 
 
 func create_sync_data() -> Array:
@@ -26,7 +26,7 @@ func create_sync_data() -> Array:
 			cells.append({
 				x = x,
 				y = y,
-				cell_id = get_cell(x, y)
+				cell_id = get_cell_source_id(0, Vector2(x, y))
 			})
 	return cells
 

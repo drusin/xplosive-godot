@@ -1,64 +1,88 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://byjew8rthj835"]
 
-[ext_resource path="res://src/game/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://assets/1bitxplosive.png" type="Texture2D" id=2]
-[ext_resource path="res://src/game/FireController.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://src/game/Bomb.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cubfkkns5fiau" path="res://assets/1bitxplosive.png" id="2"]
+[ext_resource type="PackedScene" path="res://src/game/FireController.tscn" id="3"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
-region = Rect2( 280, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("2")
+region = Rect2(280, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 288, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2")
+region = Rect2(288, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 296, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("2")
+region = Rect2(296, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 2 )
-region = Rect2( 304, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("2")
+region = Rect2(304, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
-region = Rect2( 312, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("2")
+region = Rect2(312, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 320, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("2")
+region = Rect2(320, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 2 )
-region = Rect2( 328, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("2")
+region = Rect2(328, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 336, 0, 8, 8 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("2")
+region = Rect2(336, 0, 8, 8)
 
-[sub_resource type="SpriteFrames" id=9]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+[sub_resource type="SpriteFrames" id="9"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}],
 "loop": false,
-"name": "default",
+"name": &"default",
 "speed": 4.0
-} ]
+}]
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id="10"]
 radius = 2.0
 
 [node name="Bomb" type="StaticBody2D"]
-position = Vector2( 32, 32 )
+position = Vector2(32, 32)
 collision_layer = 64
 collision_mask = 0
-script = ExtResource( 1 )
-FireController = ExtResource( 3 )
+script = ExtResource("1")
+FireController = ExtResource("3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-frames = SubResource( 9 )
+sprite_frames = SubResource("9")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 10 )
+shape = SubResource("10")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 visible = false
@@ -66,6 +90,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-shape = SubResource( 10 )
+shape = SubResource("10")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_Area2D_body_exited"]

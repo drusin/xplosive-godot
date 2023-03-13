@@ -8,12 +8,11 @@ const LAYERS := {
 	4: 5,
 }
 
-@export (int, 1, 4) var player_number := 1
+@export_range(1, 4) var player_number := 1
 @export var SPEED := 20
 @export var max_bombs := 2
 @export var power := 2
 
-var velocity := Vector2.ZERO
 var dead := false
 
 @onready var animation_tree := $AnimationTree

@@ -2,7 +2,7 @@ extends Node2D
 
 var fire_container
 
-@export (PackedScene)var Fire
+@export var Fire: PackedScene
 @export var power = 3
 
 @onready var parent = get_parent()

@@ -2,7 +2,7 @@ extends AbstractMenu
 
 const Player := preload("res://src/menu/online/Player.tscn")
 
-@export (PackedScene)var Level
+@export var Level: PackedScene
 
 var lobby_id := -1
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 # warning-ignore:return_value_discarded
 	MultiplayerState.connect("lobby_updated",Callable(self,"update_lobby"))
 # warning-ignore:return_value_discarded
-	SignalingClient.connect("lobby_deleted",Callable(self,"_on_lobby_deleted"))
+	SIGNALING_CLIENT.connect("lobby_deleted",Callable(self,"_on_lobby_deleted"))
 # warning-ignore:return_value_discarded
 	multiplayer.connect("peer_packet",Callable(self,"_print_message"))
 
@@ -52,7 +52,7 @@ func update_lobby() -> void:
 
 
 func _on_player_name_changed(text: String) -> void:
-	SignalingClient.send_alias(text)
+	SIGNALING_CLIENT.send_alias(text)
 
 
 func _on_lobby_deleted(_lobby_id) -> void:
@@ -65,13 +65,13 @@ func _on_Back_pressed() -> void:
 
 
 func _leave_lobby() -> void:
-	SignalingClient.disconnect_all_peers()
+	SIGNALING_CLIENT.disconnect_all_peers()
 	lobby_id = -1
 	emit_signal("transition_back")
 	if get_tree().is_server():
-		SignalingClient.delete_lobby()
+		SIGNALING_CLIENT.delete_lobby()
 	else:
-		SignalingClient.leave_lobby()
+		SIGNALING_CLIENT.leave_lobby()
 
 
 func _on_Start_pressed() -> void:

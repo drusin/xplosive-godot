@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (PackedScene)var Player
+@export var Player: PackedScene
 
 @onready var players = $Players
 @onready var bomb_controller = $BombController
