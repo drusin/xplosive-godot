@@ -12,8 +12,8 @@ func _ready() -> void:
 	Settings.load_settings()
 	
 	for menu in menus.get_children():
-		menu.connect("transition",Callable(self,"_on_transition"))
-		menu.connect("transition_back",Callable(self,"_on_transition_back"))
+		menu.connect("transition", _on_transition)
+		menu.connect("transition_back", _on_transition_back)
 		submenus[menu.get_name()] = menu
 	
 	main_menu.focus_default()

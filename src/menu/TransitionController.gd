@@ -2,8 +2,8 @@ extends Node
 
 const DURATION := Constants.TRANSITION_DURATION
 
-@export (NodePath)var main_menu_path
-@export (NodePath)var logo_path
+@export var main_menu_path: NodePath
+@export var logo_path: NodePath
 
 var history := []
 
@@ -13,7 +13,7 @@ var history := []
 @onready var _input_disabler = get_tree().get_root()
 
 
-func transition(to: Node) -> void:
+func transition(to: AbstractMenu) -> void:
 	_disable_input()
 	if history.size() > 0 and history.back() == to:
 		history.pop_back()
@@ -29,15 +29,15 @@ func transition_back() -> void:
 	transition(history.back())
 
 
-func _transition_left(to: Node) -> void:
+func _transition_left(to: AbstractMenu) -> void:
 	_transition_internal(to, -64, 64)
 
 
-func _transition_right(to: Node) -> void:
+func _transition_right(to: AbstractMenu) -> void:
 	_transition_internal(to, 64, -64)
 
 
-func _transition_internal(to: Node, current_end_x: float, to_start_x: float) -> void:
+func _transition_internal(to: AbstractMenu, current_end_x: float, to_start_x: float) -> void:
 	to.position.x = to_start_x
 	var current_y = current.position.y
 	var to_y = to.position.y
@@ -65,7 +65,7 @@ func _transition_logo(from_x: float, to_x: float, tween: Tween) -> void:
 	tween.parallel().tween_property(logo, "position", Vector2(to_x, initial_y), DURATION)
 
 
-func _after_transition(old: Node) -> void:
+func _after_transition(old: AbstractMenu) -> void:
 	old.visible = false
 	_enable_input()
 	current.call_deferred("focus_default")

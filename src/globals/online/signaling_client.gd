@@ -45,9 +45,10 @@ var _rtc_multiplayer := WebRTCMultiplayerPeer.new()
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded
-	_client.connect("connection_closed", Callable(self,"_on_connection_closed"))
+	#_client.connect("connection_closed", Callable(self,"_on_connection_closed"))
 # warning-ignore:return_value_discarded
-	_client.connect("data_received", Callable(self,"_on_data_received"))
+	#_client.connect("data_received", Callable(self,"_on_data_received"))
+	pass
 
 
 func _process(_delta) -> void:
