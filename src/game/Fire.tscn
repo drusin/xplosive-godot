@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://i1hwqxd3orei"]
+[gd_scene load_steps=22 format=3 uid="uid://i1hwqxd3orei"]
 
 [ext_resource type="Texture2D" uid="uid://cubfkkns5fiau" path="res://assets/1bitxplosive.png" id="1"]
 [ext_resource type="Script" path="res://src/game/Fire.gd" id="2"]
@@ -27,6 +27,9 @@ animation = &"up"
 [sub_resource type="AnimationNodeAnimation" id="8"]
 animation = &"right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wdqhs"]
+animation = &"center"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="9"]
 blend_point_0/node = SubResource("1")
 blend_point_0/pos = Vector2(-2, 0)
@@ -44,6 +47,8 @@ blend_point_6/node = SubResource("7")
 blend_point_6/pos = Vector2(0, -1)
 blend_point_7/node = SubResource("8")
 blend_point_7/pos = Vector2(0.9, 0)
+blend_point_8/node = SubResource("AnimationNodeAnimation_wdqhs")
+blend_point_8/pos = Vector2(0, 0)
 min_space = Vector2(-2, -2)
 max_space = Vector2(2, 2)
 blend_mode = 1
@@ -260,7 +265,7 @@ script = ExtResource("2")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("9")
 anim_player = NodePath("../AnimationPlayer")
-parameters/blend_position = Vector2(0, -0.0862069)
+parameters/blend_position = Vector2(0, -0.011976)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -270,7 +275,7 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1")
 region_enabled = true
-region_rect = Rect2(224, 0, 8, 8)
+region_rect = Rect2(232, 0, 8, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

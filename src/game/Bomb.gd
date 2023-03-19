@@ -5,12 +5,12 @@ signal exploded(player)
 const BITS_TO_CHECK := [2, 3, 4, 5]
 
 @export var power := 2
-@export var FireController: PackedScene
+@export var FireController := preload("res://src/game/FireController.tscn")
 
 var player: Player
 var checked_for_players := false
-var fire_container
-var fire_controller_container
+var fire_container: Node
+var fire_controller_container: Node
 
 @onready var player_detector := $PlayerDetector
 @onready var sprite := $AnimatedSprite2D
@@ -49,6 +49,10 @@ func _on_Area2D_body_exited(body):
 
 
 func _on_AnimatedSprite_animation_finished():
+	explode(global_position)
+
+
+func explode(_position):
 	var fire_controller = FireController.instantiate()
 	fire_controller.global_position = global_position
 	fire_controller.power = power
@@ -56,15 +60,3 @@ func _on_AnimatedSprite_animation_finished():
 	fire_controller_container.add_child(fire_controller)
 	emit_signal("exploded", player)
 	queue_free()
-
-
-func explode(_position):
-	_on_AnimatedSprite_animation_finished()
-
-
-func create_sync_data() -> Dictionary:
-	return {
-		player_name = player.get_name(),
-		position = global_position,
-		frame = sprite.frame
-	}

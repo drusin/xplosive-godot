@@ -1,11 +1,5 @@
 extends TileMap
 
-enum { 
-	EMPTY = -1,
-	DESTROYABLE = 4,
-	BREAKING = 5
-}
-
 @onready var breakable := _get_tile_atlas_coords_by_prop("name", "breakable")
 @onready var breaking := _get_tile_atlas_coords_by_prop("name", "breaking")
 
@@ -27,7 +21,7 @@ func explode(world_position):
 func burning_finished(world_position):
 	var map_position = local_to_map(world_position)
 	if get_cell_atlas_coords(0, map_position) == breaking:
-		set_cell(0, map_position, EMPTY)
+		set_cell(0, map_position, -1)
 
 
 func create_sync_data() -> Array:
@@ -40,8 +34,3 @@ func create_sync_data() -> Array:
 				cell_id = get_cell_source_id(0, Vector2(x, y))
 			})
 	return cells
-
-
-@rpc func synchronize(cells: Array) -> void:
-	for cell in cells:
-		set_cell(cell.x, cell.y, cell.cell_id)

@@ -1,19 +1,19 @@
 extends Node2D
 
-var fire_container
-
-@export var Fire: PackedScene
 @export var power = 3
 
+var fire_container
+
 @onready var parent = get_parent()
-@onready var raycast = $RayCast2D
+@onready var Fire := preload("res://src/game/Fire.tscn")
+@onready var raycast: RayCast2D = $RayCast2D
 
 
 func _ready():
 	if fire_container == null:
 		fire_container = get_parent()
 	
-	create_fire(global_position, Vector2(power, power), global_position)
+	create_fire(global_position, Vector2(0, 0), global_position)
 	
 	one_direction("x", 1)
 	one_direction("x", -1)

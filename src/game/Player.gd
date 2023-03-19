@@ -53,4 +53,5 @@ func die() -> void:
 	animation_state.travel("Dead")
 	set_process(false)
 	set_physics_process(false)
+	controller.set_process(false)
 

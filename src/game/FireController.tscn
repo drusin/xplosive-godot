@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bte2e8yyvplab"]
+[gd_scene load_steps=2 format=3 uid="uid://bte2e8yyvplab"]
 
 [ext_resource type="Script" path="res://src/game/FireController.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://i1hwqxd3orei" path="res://src/game/Fire.tscn" id="2"]
 
 [node name="FireController" type="Node2D"]
 position = Vector2(32, 32)
 script = ExtResource("1")
-Fire = ExtResource("2")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

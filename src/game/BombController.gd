@@ -1,15 +1,15 @@
 extends Node2D
 
-@export var Player: PackedScene
-@export var Bomb: PackedScene
-@export var Fire: PackedScene
 @export var players_path: NodePath
 
 var players: Node;
 
-@onready var bomb_container = $Bombs
-@onready var fire_container = $Fires
-@onready var fire_controller_container = $FireControllers
+@onready var Player := preload("res://src/game/Player.tscn")
+@onready var Bomb := preload("res://src/game/Bomb.tscn")
+@onready var Fire := preload("res://src/game/Fire.tscn")
+@onready var bomb_container := $Bombs
+@onready var fire_container := $Fires
+@onready var fire_controller_container := $FireControllers
 
 func _ready() -> void:
 	_assure_players()
@@ -32,19 +32,17 @@ func init() -> void:
 
 
 func _connect_to_controller(player: Player) -> void:
-# warning-ignore:return_value_discarded
-	player.controller.connect("bomb_pressed",Callable(self,"_on_bomb_pressed"))
+	player.controller.bomb_pressed.connect(_on_bomb_pressed)
 
 
 
 func _on_bomb_pressed(player: Player) -> void:
 	if player.current_bombs > 0 and !player.is_on_bomb():
 		player.current_bombs -= 1
-# warning-ignore:return_value_discarded
 		_create_bomb(player)
 
 
-func _create_bomb(player) -> Node:
+func _create_bomb(player) -> void:
 	var bomb = Bomb.instantiate();
 	bomb.player = player
 	bomb.power = player.power
@@ -55,20 +53,8 @@ func _create_bomb(player) -> Node:
 	bomb.global_position = player.global_position
 	bomb.global_position.x = round((bomb.global_position.x + 4) / 8) * 8 - 4
 	bomb.global_position.y = round((bomb.global_position.y + 4) / 8) * 8 - 4
-	return bomb
 
 
 func _on_bomb_exploded(player) -> void:
 	if player != null:
 		player.current_bombs += 1
-
-
-func create_sync_data() -> Dictionary:
-	var bombs := []
-	var fires := []
-	for bomb in bomb_container.get_children():
-		bombs.append(bomb.create_sync_data())
-	for fire in fire_container.get_children():
-		fires.append(fire.create_sync_data())
-	
-	return { bombs = bombs, fires = fires }
