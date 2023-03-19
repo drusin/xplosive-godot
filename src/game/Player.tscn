@@ -284,11 +284,3 @@ shape = SubResource("20")
 
 [node name="Controller" type="Node" parent="."]
 script = ExtResource("3")
-
-[node name="Tween" type="Tween" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null

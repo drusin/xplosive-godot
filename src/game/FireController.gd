@@ -25,22 +25,22 @@ func _ready():
 
 func one_direction(x_or_y, negative_or_positive):
 	for i in range(0, power):
-		var position = global_position
+		var fire_position = global_position
 		var raycast_start = global_position
 		raycast_start[x_or_y] += 8 * i * negative_or_positive
-		position[x_or_y] += 8 * (i + 1) * negative_or_positive
+		fire_position[x_or_y] += 8 * (i + 1) * negative_or_positive
 		var new_travel_vector = Vector2()
 		new_travel_vector[x_or_y] = power * negative_or_positive - i * negative_or_positive
-		create_fire(position, new_travel_vector, raycast_start)
+		create_fire(fire_position, new_travel_vector, raycast_start)
 		if raycast.is_colliding():
 			break
 
 
-func create_fire(position, travel_vector, raycast_start):
+func create_fire(fire_position, travel_vector, raycast_start):
 	var fire = Fire.instantiate()
-	fire.global_position = position
+	fire.global_position = fire_position
 	fire_container.call_deferred("add_child", fire)
 	fire.call_deferred("_set_travel_vector",travel_vector)
 	raycast.global_position = raycast_start
-	raycast.target_position = position - raycast_start
+	raycast.target_position = fire_position - raycast_start
 	raycast.force_raycast_update()

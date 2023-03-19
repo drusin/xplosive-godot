@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnh4nb5tegvk1"]
 
-[ext_resource type="PackedScene" path="res://src/game/BombController.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://oagyk1ruyy26" path="res://src/game/BombController.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://44yv0jwojikd" path="res://src/game/Player.tscn" id="2"]
 [ext_resource type="Script" path="res://src/game/TileMap.gd" id="3"]
 [ext_resource type="Script" path="res://src/game/Level.gd" id="4"]

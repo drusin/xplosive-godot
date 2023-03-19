@@ -14,8 +14,8 @@ func _ready():
 	for lobby_player in MultiplayerState.players.values():
 		var player = Player.instantiate()
 		player.player_number = lobby_player.number
-		var position = spawn_points.get_children()[i].global_position
-		player.global_position = Vector2(position.x, position.y)
+		var player_position = spawn_points.get_children()[i].global_position
+		player.global_position = Vector2(player_position.x, player_position.y)
 		
 		if MultiplayerState.online:
 			player.get_node("Controller").set_multiplayer_authority(lobby_player.id)

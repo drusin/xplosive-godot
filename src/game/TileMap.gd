@@ -10,10 +10,10 @@ enum {
 @onready var breaking := _get_tile_atlas_coords_by_prop("name", "breaking")
 
 
-func _get_tile_atlas_coords_by_prop(name: String, val: Variant) -> Vector2i:
+func _get_tile_atlas_coords_by_prop(prop_name: String, val: Variant) -> Vector2i:
 	var source := tile_set.get_source(0) as TileSetAtlasSource
 	for i in range(0, source.get_tiles_count()):
-		if source.get_tile_data(source.get_tile_id(i), 0).get_custom_data(name) == val:
+		if source.get_tile_data(source.get_tile_id(i), 0).get_custom_data(prop_name) == val:
 			return source.get_tile_id(i)
 	return Vector2i(-1, -1)
 
