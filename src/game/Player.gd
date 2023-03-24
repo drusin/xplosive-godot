@@ -2,10 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 const LAYERS := {
-	1: 2,
-	2: 3,
-	3: 4,
-	4: 5,
+	1: 3,
+	2: 4,
+	3: 5,
+	4: 6,
 }
 
 @export_range(1, 4) var player_number := 1

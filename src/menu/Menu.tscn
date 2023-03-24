@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4f7urehiju0q" path="res://src/menu/LocalMenu.tscn" id="5"]
 [ext_resource type="Script" path="res://src/menu/TransitionController.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://c4wtel0cqtqek" path="res://src/menu/online/OnlineMenu.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://src/game/Level.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://cnh4nb5tegvk1" path="res://src/game/Level.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://dbdaf5etrhg2l" path="res://src/menu/online/CreateMenu.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bhxesm62rv010" path="res://src/menu/online/JoinMenu.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://6ovf4q0jiq57" path="res://src/menu/online/Lobby.tscn" id="11"]
