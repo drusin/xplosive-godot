@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cnh4nb5tegvk1"]
 
-[ext_resource type="PackedScene" uid="uid://oagyk1ruyy26" path="res://src/game/BombController.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://44yv0jwojikd" path="res://src/game/Player.tscn" id="2"]
-[ext_resource type="Script" path="res://src/game/TileMap.gd" id="3"]
-[ext_resource type="Script" path="res://src/game/Level.gd" id="4"]
-[ext_resource type="Script" path="res://src/game/Syncer.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://oagyk1ruyy26" path="res://src/game/bomb_controller.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://44yv0jwojikd" path="res://src/game/player.tscn" id="2"]
+[ext_resource type="Script" path="res://src/game/tile_map.gd" id="3"]
+[ext_resource type="Script" path="res://src/game/level.gd" id="4"]
+[ext_resource type="Script" path="res://src/game/syncer.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://cubfkkns5fiau" path="res://assets/1bitxplosive.png" id="6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2etdn"]

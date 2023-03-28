@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlcem3x0jdblq"]
 
 [ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="2"]
-[ext_resource type="Script" path="res://src/menu/online/Player.gd" id="3"]
+[ext_resource type="Script" path="res://src/menu/online/player.gd" id="3"]
 
 [node name="Player" type="HBoxContainer"]
 anchors_preset = 10

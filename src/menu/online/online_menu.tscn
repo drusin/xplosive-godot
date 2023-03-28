@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4wtel0cqtqek"]
 
 [ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="1"]
-[ext_resource type="Script" path="res://src/menu/online/OnlineMenu.gd" id="2"]
+[ext_resource type="Script" path="res://src/menu/online/online_menu.gd" id="2"]
 
 [node name="OnlineMenu" type="MarginContainer"]
 anchors_preset = 12

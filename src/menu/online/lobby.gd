@@ -1,6 +1,6 @@
 extends AbstractMenu
 
-const Player := preload("res://src/menu/online/Player.tscn")
+const Player := preload("res://src/menu/online/player.tscn")
 
 @export var Level: PackedScene
 

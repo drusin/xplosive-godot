@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bte2e8yyvplab"]
 
-[ext_resource type="Script" path="res://src/game/FireController.gd" id="1"]
+[ext_resource type="Script" path="res://src/game/fire_controller.gd" id="1"]
 
 [node name="FireController" type="Node2D"]
 position = Vector2(32, 32)

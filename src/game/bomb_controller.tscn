@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://oagyk1ruyy26"]
 
-[ext_resource type="Script" path="res://src/game/BombController.gd" id="1"]
+[ext_resource type="Script" path="res://src/game/bomb_controller.gd" id="1"]
 
 [node name="BombController" type="Node2D"]
 script = ExtResource("1")

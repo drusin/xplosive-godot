@@ -5,7 +5,7 @@ extends Node2D
 var fire_container
 
 @onready var parent = get_parent()
-@onready var Fire := preload("res://src/game/Fire.tscn")
+@onready var Fire := preload("res://src/game/fire.tscn")
 @onready var raycast: RayCast2D = $RayCast2D
 
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://6ovf4q0jiq57"]
 
 [ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="1"]
-[ext_resource type="PackedScene" path="res://src/game/Level.tscn" id="2"]
-[ext_resource type="Script" path="res://src/menu/online/Lobby.gd" id="3"]
+[ext_resource type="PackedScene" path="res://src/game/level.tscn" id="2"]
+[ext_resource type="Script" path="res://src/menu/online/lobby.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://ci7q6sor8okjm" path="res://assets/lobby-icons/options.png" id="4"]
-[ext_resource type="PackedScene" uid="uid://dlcem3x0jdblq" path="res://src/menu/online/Player.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dlcem3x0jdblq" path="res://src/menu/online/player.tscn" id="5"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15

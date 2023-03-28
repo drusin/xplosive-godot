@@ -1,7 +1,7 @@
 extends AbstractMenu
 
 @export var Level: PackedScene
-#const Level = "res://src/Level.tscn"
+#const Level = "res://src/level.tscn"
 
 @onready var minus_button = $CenterContainer/GridContainer/MarginContainer2/Minus
 @onready var plus_button = $CenterContainer/GridContainer/MarginContainer/Plus

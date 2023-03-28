@@ -23,7 +23,7 @@ Display=8
 [application]
 
 config/name="Xplosive-godot"
-run/main_scene="res://src/menu/Menu.tscn"
+run/main_scene="res://src/menu/menu.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/bg_color=Color(0.180392, 0.188235, 0.215686, 1)
 config/icon="res://icon.png"

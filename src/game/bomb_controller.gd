@@ -4,9 +4,9 @@ extends Node2D
 
 var players: Node;
 
-@onready var Player := preload("res://src/game/Player.tscn")
-@onready var Bomb := preload("res://src/game/Bomb.tscn")
-@onready var Fire := preload("res://src/game/Fire.tscn")
+@onready var Player := preload("res://src/game/player.tscn")
+@onready var Bomb := preload("res://src/game/bomb.tscn")
+@onready var Fire := preload("res://src/game/fire.tscn")
 @onready var bomb_container := $Bombs
 @onready var fire_container := $Fires
 @onready var fire_controller_container := $FireControllers

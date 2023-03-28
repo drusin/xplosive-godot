@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhxesm62rv010"]
 
 [ext_resource type="Theme" uid="uid://cxq025fsmiuu3" path="res://assets/theme/theme.tres" id="1"]
-[ext_resource type="Script" path="res://src/menu/online/JoinMenu.gd" id="2"]
+[ext_resource type="Script" path="res://src/menu/online/join_menu.gd" id="2"]
 
 [node name="JoinMenu" type="MarginContainer"]
 anchors_preset = 15

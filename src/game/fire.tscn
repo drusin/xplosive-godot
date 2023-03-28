@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://i1hwqxd3orei"]
 
 [ext_resource type="Texture2D" uid="uid://cubfkkns5fiau" path="res://assets/1bitxplosive.png" id="1"]
-[ext_resource type="Script" path="res://src/game/Fire.gd" id="2"]
+[ext_resource type="Script" path="res://src/game/fire.gd" id="2"]
 
 [sub_resource type="AnimationNodeAnimation" id="1"]
 animation = &"horizontal"
