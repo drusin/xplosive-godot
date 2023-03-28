@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cfl8d754qnmo7" path="res://assets/logo.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://ci0rcmltieyci" path="res://src/menu/main_menu.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c4f7urehiju0q" path="res://src/menu/local_menu.tscn" id="5"]
-[ext_resource type="Script" path="res://src/menu/TransitionController.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://c4wtel0cqtqek" path="res://src/menu/online/online_menu.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://cnh4nb5tegvk1" path="res://src/game/level.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://dbdaf5etrhg2l" path="res://src/menu/online/create_menu.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bhxesm62rv010" path="res://src/menu/online/join_menu.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://6ovf4q0jiq57" path="res://src/menu/online/lobby.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://bna0ff2pwjt2d" path="res://src/menu/online/multiplayer_settings.tscn" id="12"]
+[ext_resource type="Script" path="res://src/menu/transition_controller.gd" id="12_ii58q"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -79,6 +79,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TransitionController" type="Node" parent="."]
-script = ExtResource("6")
+script = ExtResource("12_ii58q")
 main_menu_path = NodePath("../Menus/MainMenu")
 logo_path = NodePath("../Logo")

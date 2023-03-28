@@ -5,7 +5,7 @@ signal exploded(player)
 const BITS_TO_CHECK := [2, 3, 4, 5]
 
 @export var power := 2
-@export var FireController := preload("res://src/game/FireController.tscn")
+@export var FireController := preload("res://src/game/fire_controller.tscn")
 
 var player: Player
 var checked_for_players := false
